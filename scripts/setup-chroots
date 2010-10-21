@@ -1,0 +1,15 @@
+#!/bin/bash
+
+makechroot() {
+  _arch=$1
+  sudo rm -rf chroot-${_arch}
+  sudo mkdir -p chroot-${_arch}
+  setarch ${_arch} sudo mkarchroot \
+    -M /usr/share/devtools/makepkg-${_arch}.conf \
+    -C scripts/pacman-haskell.conf \
+    base base-devel sudo ghc
+}
+
+makechroot i686
+makechroot x86_64
+
