@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for p in *
+do
+  source $p/PKGBUILD
+  for i in ${depends[@]} ${makedepends[@]}
+  do
+    i=${i%>*}
+    i=${i%=*}
+    i=${i%<*}
+    [ -d "$i" ] || echo $i
+  done
+done
+
