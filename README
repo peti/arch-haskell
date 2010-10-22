@@ -9,17 +9,14 @@ scripts/setup-chroots
 
 # Download the Hackage tarball
 wget http://hackage.haskell.org/packages/archive/00-index.tar.gz
-gunzip 00-index-tar.gz
+gunzip 00-index.tar.gz
 
 # Create a new PKGBUILD tree
+# TODO: implement setting pkgrel from PKGLIST in manycabal2arch
 mkdir habs-new
-manycabal2arch PKGLIST 00-index.tar habs-new
+manycabal2arch PKGLIST 00-index.tar habs-new &>! manycabal2arch.log
 
 # Batch build it (use toposort from archlinux/tests)
-# TODO: write the build-package script
-(cd habs-new && toposort) | while read name
-do
-   scripts/build-package habs-new/$name i686
-   scripts/build-package habs-new/$name x86_64
-done
+# Packages go to chroot-$arch/repo
+./makeworld
 

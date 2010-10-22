@@ -4,10 +4,10 @@ makechroot() {
   _arch=$1
   sudo rm -rf chroot-${_arch}
   sudo mkdir -p chroot-${_arch}
-  setarch ${_arch} sudo mkarchroot \
+  setarch ${_arch} sudo mkarchroot -f \
     -M /usr/share/devtools/makepkg-${_arch}.conf \
     -C scripts/pacman-haskell.conf \
-    base base-devel sudo ghc
+    chroot-${_arch} base base-devel sudo ghc
 }
 
 makechroot i686

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+pushd scripts
+ghc -o toposort -O2 toposort.hs -package archlinux
+popd
+
+(cd habs-new && toposort) | while read name
+do
+  scripts/build-package habs-new/$name i686
+  scripts/build-package habs-new/$name x86_64
+done
+
