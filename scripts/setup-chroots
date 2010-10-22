@@ -7,7 +7,7 @@ makechroot() {
   setarch ${_arch} sudo mkarchroot -f \
     -M /usr/share/devtools/makepkg-${_arch}.conf \
     -C scripts/pacman-haskell.conf \
-    chroot-${_arch} base base-devel sudo ghc
+    chroot-${_arch}/root base base-devel sudo ghc
 }
 
 makechroot i686
