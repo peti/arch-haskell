@@ -4,12 +4,16 @@ git clone git://github.com/archhaskell/habs.git
 # Extract the package list
 scripts/extract-pkglist > PKGLIST
 
-# Create chroots for building
-scripts/setup-chroots
-
 # Download the Hackage tarball
 wget http://hackage.haskell.org/packages/archive/00-index.tar.gz
 gunzip 00-index.tar.gz
+
+# find inconsistencies
+(cd scripts && ghc -o findconflicts findconflicts.hs -Wall -package archlinux -threaded)
+scripts/findconflicts PKGLIST 00-index.tar
+
+# Create chroots for building
+scripts/setup-chroots
 
 # Create a new PKGBUILD tree
 # TODO: implement setting pkgrel from PKGLIST in manycabal2arch
