@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export LC_ALL=C
+
 pushd scripts
 ghc -o toposort -O2 toposort.hs -package archlinux
 popd
