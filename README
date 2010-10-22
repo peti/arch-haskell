@@ -10,7 +10,11 @@ gunzip 00-index.tar.gz
 
 # find inconsistencies
 (cd scripts && ghc -o findconflicts findconflicts.hs -Wall -package archlinux -threaded)
-scripts/findconflicts PKGLIST 00-index.tar
+scripts/findconflicts PKGLIST 00-index.tar +RTS -N4
+
+# find updates
+(cd scripts && ghc -o findupdates findupdates.hs -Wall -package archlinux -threaded)
+scripts/findupdates PKGLIST 00-index.tar +RTS -N4
 
 # Create chroots for building
 scripts/setup-chroots
