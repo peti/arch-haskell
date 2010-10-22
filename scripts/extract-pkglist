@@ -3,6 +3,6 @@
 for i in habs/*
 do
   source $i/PKGBUILD
-  basename $source | sed "s/\(.*\)-\(.*\).tar.gz/\1 \2 $pkgrel/"
+  basename $source | sed -r -e "s/(.*)-(.*).tar.(gz|bz2)/\1 \2 $pkgrel/"
 done
 
