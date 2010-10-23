@@ -11,9 +11,9 @@ fi
 
 [[ x"$1" == x"force" ]] && force=1 || force=0
 
-(cd habs-new && ../scripts/toposort) | while read name
+(cd habs && ../scripts/toposort) | while read name
 do
-    source habs-new/$name/PKGBUILD
+    source habs/$name/PKGBUILD
     pkgspec=$pkgname-$pkgver-$pkgrel
     if [ -f "chroot-i686/copy/repo/$pkgspec-i686.pkg.tar.xz" ] &&
        [ -f "chroot-x86_64/copy/repo/$pkgspec-x86_64.pkg.tar.xz" ]
