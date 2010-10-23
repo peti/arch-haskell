@@ -11,5 +11,4 @@ makechroot() {
 }
 
 makechroot i686
-makechroot x86_64
-
+#makechroot x86_64

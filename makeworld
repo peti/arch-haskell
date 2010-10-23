@@ -15,15 +15,14 @@ fi
 do
     source habs/$name/PKGBUILD
     pkgspec=$pkgname-$pkgver-$pkgrel
-    if [ -f "chroot-i686/copy/repo/$pkgspec-i686.pkg.tar.xz" ] &&
-       [ -f "chroot-x86_64/copy/repo/$pkgspec-x86_64.pkg.tar.xz" ]
+    if [ -f "chroot-i686/copy/repo/$pkgspec-i686.pkg.tar.xz" ]
     then
         echo "Not building $name (already built)."
         continue
     else
         echo "Begin building $name..."
-        scripts/build-package habs-new/$name i686
-        scripts/build-package habs-new/$name x86_64
+        scripts/build-package habs/$name i686
+        #scripts/build-package habs/$name x86_64
     fi
 done
 
