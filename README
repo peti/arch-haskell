@@ -13,8 +13,10 @@ scripts/findupdates PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar +
 scripts/setup-chroots
 
 # Create a new PKGBUILD tree
-# TODO: implement setting pkgrel from PKGLIST in manycabal2arch
 cabal2arch convtar PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar habs
+
+# Fixup pkgrel field
+scripts/setpkgrel PKGLIST habs
 
 # Batch build it (use toposort from archlinux/tests)
 # Packages go to chroot-$arch/repo
