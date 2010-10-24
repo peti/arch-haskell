@@ -26,3 +26,5 @@ manycabal2arch PKGLIST 00-index.tar habs-new &>! manycabal2arch.log
 # Packages go to chroot-$arch/repo
 ./makeworld
 
+# Sync pacman mirror
+rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
