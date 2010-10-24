@@ -1,6 +1,8 @@
 #!/bin/bash
 # Run me with sudo !
 
+set -e
+
 export LC_ALL=C
 
 if ! [ -f "scripts/toposort" ]; then
