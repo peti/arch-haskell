@@ -1,7 +1,3 @@
-# ignore generated object files
-*.o
-*.hi
-
 # ignore source tarballs downloaded by cabal2arch
 *.tar.gz
 
@@ -11,10 +7,14 @@
 # ignore habs sub-directory
 /habs/*
 
+# ignore generated makefile configuration
+/config.mk
+
 # ignore script binaries
 /scripts/findconflicts
 /scripts/findupdates
 /scripts/reverse_deps
 /scripts/toposort
 /scripts/recdeps
-/cabal2arch
+/scripts/cabal2pkgbuild
+
