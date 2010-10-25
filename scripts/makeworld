@@ -1,17 +1,8 @@
 #!/bin/bash
-# Run me with sudo !
 
-set -e
+set -eu
 
 export LC_ALL=C
-
-if ! [ -f "scripts/toposort" ]; then
-  pushd scripts
-  ghc -o toposort -O2 toposort.hs -package archlinux
-  popd
-fi
-
-[[ x"$1" == x"force" ]] && force=1 || force=0
 
 (cd habs && ../scripts/toposort) | while read name
 do
