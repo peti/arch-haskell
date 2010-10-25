@@ -3,8 +3,8 @@
 PKGLIST := PKGLIST
 HABS	:= habs
 
-.PHONY: all config
-all world::
+.PHONY: all world publish
+all world publish::
 
 include config.mk
 
@@ -57,3 +57,6 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 scripts/% : scripts/%.hs
 	@echo "[GHC]  $@"
 	@ghc -o $@ --make -Wall -O $<
+
+publish::
+	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
