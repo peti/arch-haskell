@@ -23,6 +23,8 @@ main = do
   case preprocessCabal cabalSrc systemPkgs of
     Nothing -> fail ("cannot parse and/or resolve " ++ show cabalFile)
     Just cabalPkg -> do
-      let (pkgbuild, Just hooks) = cabal2pkg cabalPkg systemPkgs
+      let (pkgbuild, hooks) = cabal2pkg cabalPkg systemPkgs
       writeFile (outputDir </> "PKGBUILD") (render (pkg2doc email pkgbuild) ++ "\n")
-      writeFile (outputDir </> (install_hook_name (arch_pkgname (pkgBody pkgbuild)))) hooks
+      case hooks of
+        Just hook -> writeFile (outputDir </> (install_hook_name (arch_pkgname (pkgBody pkgbuild)))) hook
+        Nothing -> return ()
