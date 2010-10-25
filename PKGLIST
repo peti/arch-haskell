@@ -8,6 +8,7 @@ hledger 0.12.1 1
 hledger-lib 0.12.1 1
 hopenssl 1.4 1
 hsemail 1.6 1
+hsyslog 1.4 1
 mtlparse 0.0.1 1
 non-negative 0.1 1
 numeric-prelude 0.2 1
