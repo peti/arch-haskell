@@ -1,23 +1,20 @@
-dist/
-*.hi
+# ignore generated object files
 *.o
-*~
-.*.swp
+*.hi
 
-# ignore Hackage database
-/00-index.tar
-
-# ignore tarballs downloaded by manycabal2arch
-*tar.gz
+# ignore source tarballs downloaded by cabal2arch
+*.tar.gz
 
 # ignore the chroot builds
-/chroot-*
+/chroot-*/*
 
-# ignore habs sub-repository
-/habs/
+# ignore habs sub-directory
+/habs/*
 
 # ignore script binaries
 /scripts/findconflicts
 /scripts/findupdates
 /scripts/reverse_deps
 /scripts/toposort
+/scripts/recdeps
+/cabal2arch
