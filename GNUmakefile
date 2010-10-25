@@ -55,4 +55,5 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 	scripts/pkglist2mk <"$<" >"$@"
 
 scripts/% : scripts/%.hs
-	ghc -o $@ --make -Wall -O $<
+	@echo "[GHC]  $@"
+	@ghc -o $@ --make -Wall -O $<
