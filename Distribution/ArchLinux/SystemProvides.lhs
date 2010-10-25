@@ -17,8 +17,6 @@ Standard types
 > import Data.Maybe
 > import System.FilePath
 
-> import Paths_archlinux
-
 A big structure holding data about ArchLinux
 
 > data SystemProvides = SystemProvides
@@ -36,8 +34,8 @@ Get SystemProvides from package-installed files
 
 > getDefaultSystemProvides :: IO SystemProvides
 > getDefaultSystemProvides = do
->   fnc <- getDataFileName $ "data" </> "ghc-provides.txt"
->   fnt <- getDataFileName $ "data" </> "library-providers.txt"
+>   let fnc = "data" </> "ghc-provides.txt"
+>       fnt = "data" </> "library-providers.txt"
 >   getSystemProvidesFromFiles fnc fnt
 
 > getSystemProvidesFromFiles :: FilePath -> FilePath -> IO SystemProvides

@@ -32,12 +32,11 @@ import Control.Monad
 import Control.Concurrent
 import qualified Control.Exception as CE
 
+import Data.Version
 import Data.List
 import qualified Data.ByteString.Lazy as Bytes
 
 import Text.PrettyPrint
-
-import Paths_cabal2arch
 
 import System.Directory
 import System.Environment
@@ -122,7 +121,7 @@ subCmd (CmdLnConvertOne cabalLoc) =
             let (pkgbuild', hooks) = cabal2pkg finalcabal' sysProvides
 
             apkgbuild' <- getMD5 pkgbuild'
-            let apkgbuild = apkgbuild' { pkgBuiltWith = Just version }
+            let apkgbuild = apkgbuild' { pkgBuiltWith = Just $ Version [1,0] [] }
                 pkgbuild = pkgBody apkgbuild
                 doc = pkg2doc email apkgbuild
                 dir = arch_pkgname pkgbuild
@@ -188,7 +187,7 @@ exportPackage dot email sysProvides p = do
             let (pkg, script) = cabal2pkg p' sysProvides
                 pkgname = arch_pkgname (pkgBody pkg)
             pkgbuild  <- getMD5 pkg
-            let apkgbuild = pkgbuild { pkgBuiltWith = Just version }
+            let apkgbuild = pkgbuild { pkgBuiltWith = Just $ Version [1,0] [] }
                 rawpkgbuild = (render $ pkg2doc email apkgbuild) ++ "\n"
             createDirectoryIfMissing True (dot </> pkgname)
             writeFile (dot </> pkgname </> "PKGBUILD") rawpkgbuild
