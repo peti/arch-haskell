@@ -1,47 +1,33 @@
-cabal2arch
-==========
+ArchHaskell
+===========
 
-cabal2arch is a tool used to convert CABAL ([Common Architecture for Building
-Applications and Libraries][1]) files into [ArchLinux][2] source packages.
+The code in this repository builds a binary ArchHaskell repository for
+Pacman. As a side-effect, PKGBUILD files for AUR are also generated. At
+the heart of the system is the `PKGLIST` file, which determines the set
+of Hackage packages to be included in the distribution. Based on this
+file, a `GNUmakefile` generates the entire repository offering two
+targets:
 
-Commands
---------
+1. `all`
 
-cabal2arch has two subcommands:
+    Build the entire "habs" tree, but don't  compile binary packages.
 
-1. `conv`
+2. `world`
 
-    Convert a single package description (CABAL file) into a ArchLinux source
-    package.
+    Build everything, including binary packages.
 
-1. `convtar`
+The `world` build phase requires a chroot sandbox that can be created by
+running `scripts/setup-chroots`.
 
-    Given a package list and a tarball of package descriptions create tree of
-    ArchLinux source packages for the listed packages.  The package list must
-    contain lines of the format "<pkgname> <version>".
+Consistency checks of the `PKGLIST` file can be performed as follows:
 
-Example usage
--------------
+    # Update the Hackage tarball
+    cabal update
 
-Examples for `conv`:
+    # find inconsistencies
+    make scripts/findconflicts
+    scripts/findconflicts PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar
 
-    % cabal2arch conv puremd5.cabal
-    % cabal2arch conv http://hackage.haskell.org/packages/archive/pureMD5/2.1.0.1/pureMD5.cabal
-
-Example for `convtar`:
-
-    % cabal2arch convtar PKGLIST 00-index.tar my-abs
-
-Build and install
------------------
-
-Run the well-known triple:
-
-    % runhaskell Setup.lhs configure
-    % runhaskell Setup.lhs build
-    % runhaskell Setup.lhs install
-
-Adding CABAL options as needed.
-
-[1]: http://www.haskell.org/ghc/docs/latest/html/Cabal/
-[2]: http://www.archlinux.org/
+    # find updates
+    make scripts/findupdates
+    scripts/findupdates PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar
