@@ -1,6 +1,3 @@
-# ignore source tarballs downloaded by cabal2arch
-*.tar.gz
-
 # ignore the chroot builds
 /chroot-*/*
 
