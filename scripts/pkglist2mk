@@ -1,0 +1,24 @@
+#! /bin/bash
+
+shopt -s nullglob
+set -eu
+
+pkglist="${1:-PKGLIST}"
+exec <"$pkglist"
+
+hledger_archname="hledger"
+
+while read pkgname pkgver pkgrel; do
+  var="${pkgname}_archname"
+  archname="${!var:-haskell-$(echo $pkgname | tr A-Z a-z)}"
+  echo "PACKAGES += $pkgname"
+  echo "${pkgname}_archname = $archname"
+  echo "${pkgname}_version = $pkgver"
+  echo "${pkgname}_pkgrel = $pkgrel"
+  echo "${pkgname}_cabalfile = $pkgname-$pkgver-$pkgrel.cabal"
+  echo "${pkgname}_cabalurl = http://hackage.haskell.org/packages/archive/$pkgname/$pkgver/$pkgname.cabal"
+  echo "${pkgname}_srctarball = $pkgname-$pkgver.tar.gz"
+  echo "${pkgname}_srcurl = http://hackage.haskell.org/packages/archive/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz"
+  echo "${pkgname}_aurball = $archname-$pkgver-$pkgrel.src.tar.gz"
+  echo ""
+done
