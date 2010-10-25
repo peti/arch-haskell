@@ -9,7 +9,7 @@ exec <"$pkglist"
 hledger_archname="hledger"
 
 while read pkgname pkgver pkgrel; do
-  var="${pkgname}_archname"
+  var="${pkgname//-/_}_archname"
   archname="${!var:-haskell-$(echo $pkgname | tr A-Z a-z)}"
   echo "PACKAGES += $pkgname"
   echo "${pkgname}_archname = $archname"
