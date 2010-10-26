@@ -4,7 +4,7 @@ PKGLIST := PKGLIST
 HABS	:= habs
 
 .PHONY: all world publish
-all world publish::
+all world publish clean::
 
 include config.mk
 
@@ -60,3 +60,7 @@ scripts/% : scripts/%.hs
 
 publish::
 	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
+
+clean::
+	@rm -f scripts/cabal2pkgbuild scripts/findconflicts scripts/findupdates
+	@rm -f scripts/recdeps scripts/reverse_deps scripts/toposort
