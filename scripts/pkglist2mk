@@ -37,8 +37,6 @@ while read pkgname pkgver pkgrel; do
   echo "${pkgname}_pkgrel = $pkgrel"
   echo "${pkgname}_cabalfile = $pkgname-$pkgver-$pkgrel.cabal"
   echo "${pkgname}_cabalurl = http://hackage.haskell.org/packages/archive/$pkgname/$pkgver/$pkgname.cabal"
-  echo "${pkgname}_srctarball = $pkgname-$pkgver.tar.gz"
-  echo "${pkgname}_srcurl = http://hackage.haskell.org/packages/archive/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz"
   echo "${pkgname}_aurball = $archname-$pkgver-$pkgrel.src.tar.gz"
   echo ""
 done

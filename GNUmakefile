@@ -19,15 +19,8 @@ define GEN_PACKAGE_template
 	@mv $$(HABS)/$$($(1)_archname)/$(1).cabal $$@
 	@touch $$@
 
- SRCTARBALLS += $$(HABS)/$$($(1)_archname)/$$($(1)_srctarball)
- $$(HABS)/$$($(1)_archname)/$$($(1)_srctarball):
-	@echo "[WGET] $$($(1)_srcurl)"
-	@mkdir -p $$(HABS)/$$($(1)_archname)
-	@wget --quiet --directory-prefix=$$(HABS)/$$($(1)_archname) --no-clobber $$($(1)_srcurl)
-
  PKGBUILDS += $$(HABS)/$$($(1)_archname)/PKGBUILD
  $$(HABS)/$$($(1)_archname)/PKGBUILD : $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
- $$(HABS)/$$($(1)_archname)/PKGBUILD : $$(HABS)/$$($(1)_archname)/$$($(1)_srctarball)
  $$(HABS)/$$($(1)_archname)/PKGBUILD : scripts/cabal2pkgbuild
 	@echo "[GEN]  $$($(1)_archname)-$$($(1)_version)-$$($(1)_pkgrel)/PKGBUILD"
 	@mkdir -p $$(HABS)/$$($(1)_archname)
@@ -38,6 +31,7 @@ define GEN_PACKAGE_template
 	  ; false \
 	  )
 	@sed -r -i -e 's|^pkgrel=[0-9]+$$$$|pkgrel=$$($(1)_pkgrel)|' $$(HABS)/$$($(1)_archname)/PKGBUILD
+	@echo "[MD5]  $$($(1)_archname)-$$($(1)_version)-$$($(1)_pkgrel)/PKGBUILD"
 	@sed -r -i -e "s|^md5sums=.*$$$$|$$$$(cd $$(HABS)/$$($(1)_archname) && makepkg 2>/dev/null -mg)|" $$(HABS)/$$($(1)_archname)/PKGBUILD
 
  AURBALLS += $$(HABS)/$$($(1)_archname)/$$($(1)_aurball)
