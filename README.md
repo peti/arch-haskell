@@ -19,8 +19,7 @@ targets:
 
 3. `clean`
 
-    Delete generated tool-chain object files to force a clean re-build
-    of the "habs" tree.
+    Delete all generated files (except the chroot build sandboxes).
 
 The `world` build phase requires a chroot sandbox that can be created by
 running `scripts/setup-chroots`.

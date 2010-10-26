@@ -62,5 +62,9 @@ publish::
 	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
 
 clean::
-	@rm -f scripts/cabal2pkgbuild scripts/findconflicts scripts/findupdates
-	@rm -f scripts/recdeps scripts/reverse_deps scripts/toposort
+	@rm -v config.mk
+	@rm -fv scripts/cabal2pkgbuild scripts/findconflicts scripts/findupdates
+	@rm -fv scripts/recdeps scripts/reverse_deps scripts/toposort
+	@find Distribution '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
+	@find scripts '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
+	@rm -rf $(HABS)
