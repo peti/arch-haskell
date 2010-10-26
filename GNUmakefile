@@ -54,7 +54,7 @@ world::	all scripts/toposort
 config.mk : $(PKGLIST) scripts/pkglist2mk
 	scripts/pkglist2mk <"$<" >"$@"
 
-scripts/% : scripts/%.hs
+scripts/% : scripts/%.hs $(wildcard scripts/*.hs) $(shell find Distribution '(' -name '*.hs' -o -name '*.lhs' ')')
 	@echo "[GHC]  $@"
 	@ghc -o $@ --make -Wall -O $<
 
