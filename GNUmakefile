@@ -45,7 +45,7 @@ $(foreach pkg,$(PACKAGES),$(eval $(call GEN_PACKAGE_template,$(pkg))))
 all::	$(AURBALLS)
 
 world::	all scripts/toposort
-	./scripts/makeworld
+	nice -n 20 ./scripts/makeworld
 
 config.mk : $(PKGLIST) scripts/pkglist2mk
 	scripts/pkglist2mk <"$<" >"$@"
