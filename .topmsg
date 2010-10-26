@@ -1,0 +1,8 @@
+From: Peter Simons <simons@cryp.to>
+Subject: [PATCH] Combine the separate arch-haskell repositories into a coherent build.
+
+ArchHaskell development is spread out over a whole lot of different
+repositories. That makes it hard to develop those tools, because
+there are so many separate components involved. The master branch of
+this repository combines all releavent repositories into one.
+
