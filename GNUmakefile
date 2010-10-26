@@ -3,7 +3,9 @@
 PKGLIST := PKGLIST
 HABS	:= habs
 
-.PHONY: all world publish
+GHCFLAGS := -Wall -O
+
+.PHONY: all world publish clean depend
 all world publish clean::
 
 include config.mk
@@ -54,15 +56,41 @@ world::	all scripts/toposort
 config.mk : $(PKGLIST) scripts/pkglist2mk
 	scripts/pkglist2mk <"$<" >"$@"
 
-scripts/% : scripts/%.hs $(wildcard scripts/*.hs) $(shell find Distribution '(' -name '*.hs' -o -name '*.lhs' ')')
-	@echo "[GHC]  $@"
-	@ghc -o $@ --make -Wall -O $<
+depend::
+	@echo "[GEN]  dependencies.mk"
+	@ghc $(GHCFLAGS) -M scripts/*.hs
+	@mv Makefile dependencies.mk
+
+dependencies.mk : depend
+
+include dependencies.mk
+
+scripts/cabal2pkgbuild : scripts/cabal2pkgbuild.o Distribution/ArchLinux/PkgBuild.o
+scripts/cabal2pkgbuild : Distribution/ArchLinux/SystemProvides.o
+scripts/cabal2pkgbuild : Distribution/ArchLinux/CabalTranslation.o
+	@echo "[LINK] $@"
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
+
+scripts/toposort : scripts/toposort.o Distribution/ArchLinux/PkgBuild.o Distribution/ArchLinux/SrcRepo.o
+	@echo "[LINK] $@"
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
+
+%.o : %.hs
+	@echo "[GHC]  $<"
+	@ghc $(GHCFLAGS) -o $@ -c $<
+
+%.o : %.lhs
+	@echo "[GHC]  $<"
+	@ghc $(GHCFLAGS) -o $@ -c $<
+
+%.hi : %.o
+	@:
 
 publish::
 	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
 
 clean::
-	@rm -v config.mk
+	@rm -v config.mk dependencies.mk
 	@rm -fv scripts/cabal2pkgbuild scripts/findconflicts scripts/findupdates
 	@rm -fv scripts/recdeps scripts/reverse_deps scripts/toposort
 	@find Distribution '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
