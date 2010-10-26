@@ -26,6 +26,7 @@ bluetile_archname="bluetile"
 breakout_archname="breakout"
 brians_brain_archname="brians-brain"
 hledger_archname="hledger"
+hasktags_archname="hasktags"
 
 while read pkgname pkgver pkgrel; do
   var="${pkgname//-/_}_archname"
