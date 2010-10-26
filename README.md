@@ -37,3 +37,17 @@ Consistency checks of the `PKGLIST` file can be performed as follows:
     # find updates
     make scripts/findupdates
     scripts/findupdates PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar
+
+This repository is maintained with TopGit. To initialize the various
+origins, run the following commands:
+
+    git remote add --no-tags upstream/archlinux git@github.com:archhaskell/archlinux.git
+    git config --replace-all remote.upstream/archlinux.fetch master:upstream/archlinux
+
+    git remote add --no-tags upstream/cabal2arch git@github.com:archhaskell/cabal2arch.git
+    git config --replace-all remote.upstream/cabal2arch.fetch master:upstream/cabal2arch
+
+    git remote add --no-tags upstream/archhaskell-build git://github.com/remyoudompheng/archhaskell-build.git
+    git config --replace-all remote.upstream/archhaskell-build.fetch master:upstream/archhaskell-build
+
+    tg remote --populate origin
