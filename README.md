@@ -43,9 +43,6 @@ origins, run the following commands:
     git remote add --no-tags upstream/archlinux git@github.com:archhaskell/archlinux.git
     git config --replace-all remote.upstream/archlinux.fetch master:upstream/archlinux
 
-    git remote add --no-tags upstream/cabal2arch git@github.com:archhaskell/cabal2arch.git
-    git config --replace-all remote.upstream/cabal2arch.fetch master:upstream/cabal2arch
-
     git remote add --no-tags upstream/archhaskell-build git://github.com/remyoudompheng/archhaskell-build.git
     git config --replace-all remote.upstream/archhaskell-build.fetch master:upstream/archhaskell-build
 
