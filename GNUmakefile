@@ -69,6 +69,12 @@ scripts/toposort : scripts/toposort.o Distribution/ArchLinux/PkgBuild.o Distribu
 	@echo "[LINK] $@"
 	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
 
+scripts/findconflicts : scripts/findconflicts.o Distribution/ArchLinux/HackageTranslation.o
+scripts/findconflicts : Distribution/ArchLinux/SystemProvides.o Distribution/ArchLinux/CabalTranslation.o
+scripts/findconflicts : Distribution/ArchLinux/PkgBuild.o
+	@echo "[LINK] $@"
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -package bytestring -package tar -o $@ $^
+
 %.o : %.hs
 	@echo "[GHC]  $<"
 	@ghc $(GHCFLAGS) -o $@ -c $<
