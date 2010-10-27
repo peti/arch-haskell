@@ -48,7 +48,7 @@ world::	all scripts/toposort
 	nice -n 20 ./scripts/makeworld
 
 config.mk : $(PKGLIST) scripts/pkglist2mk
-	scripts/pkglist2mk <"$<" >"$@"
+	scripts/pkglist2mk "$<" >"$@"
 
 depend::
 	@echo "[GEN]  dependencies.mk"
