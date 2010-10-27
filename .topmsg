@@ -1,0 +1,11 @@
+From: Peter Simons <simons@cryp.to>
+Subject: [PATCH] t/shared-library-support
+
+Enabling shared library support is a tricky business. Building libraries with
+--enable-shared is simple enough, but Cabal doesn't take advantage of shared
+libraries when linking executables (even when --enable-shared is specified). If
+it would, then that would also require further changes to the pkgbuild
+generator, because the dependencies would have to be *run-time* dependencies
+rather than build-time dependencies, what they are now.
+
+Signed-off-by: Peter Simons <simons@cryp.to>
