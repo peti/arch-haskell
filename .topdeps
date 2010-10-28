@@ -1,2 +1,3 @@
 upstream/archhaskell-build
 upstream/archlinux
+t/drop-warning-about-arbitrary-version-intervals
