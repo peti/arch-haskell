@@ -17,9 +17,9 @@ define GEN_PACKAGE_template
 
  CABALFILES += $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
  $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile) : $$(HACKAGE)/$(1)/$$($(1)_version)/$(1).cabal
-	@echo "[CP]   $$($(1)_cabalfile)"
+	@echo "[LN]   $$($(1)_cabalfile)"
 	@mkdir -p $$(HABS)/$$($(1)_archname)
-	@cp $$< $$@
+	@ln -f $$< $$@
 
  PKGBUILDS += $$(HABS)/$$($(1)_archname)/PKGBUILD
  $$(HABS)/$$($(1)_archname)/PKGBUILD : $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
