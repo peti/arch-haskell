@@ -44,7 +44,7 @@ endef
 
 $(foreach pkg,$(PACKAGES),$(eval $(call GEN_PACKAGE_template,$(pkg))))
 
-all::	$(AURBALLS)
+all::	$(PKGBUILDS)
 
 world::	all scripts/toposort
 	nice -n 20 ./scripts/makeworld
