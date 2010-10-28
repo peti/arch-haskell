@@ -46,4 +46,7 @@ origins, run the following commands:
     git remote add --no-tags upstream/archhaskell-build git://github.com/remyoudompheng/archhaskell-build.git
     git config --replace-all remote.upstream/archhaskell-build.fetch master:upstream/archhaskell-build
 
+    git remote add --no-tags upstream/habs git@github.com:archhaskell/habs.git
+    git config --replace-all remote.upstream/habs.fetch master:upstream/habs
+
     tg remote --populate origin
