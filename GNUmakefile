@@ -1,9 +1,11 @@
 # GNUmakefile -- an incremental build of the arch-haskell repository
 
-PKGLIST := PKGLIST
-HABS	:= habs
+PKGLIST         := PKGLIST
+HABS            := habs
+HACKAGE         := hackage
+HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
 
-GHCFLAGS := -Wall -O
+GHCFLAGS        := -Wall -O
 
 .PHONY: all world publish clean depend
 all world publish clean::
@@ -11,13 +13,13 @@ all world publish clean::
 include config.mk
 
 define GEN_PACKAGE_template
+ $$(HACKAGE)/$(1)/$$($(1)_version)/$(1).cabal : $(HACKAGE)/.extraction-datestamp
+
  CABALFILES += $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
- $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile):
-	@echo "[WGET] $$($(1)_cabalurl)"
+ $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile) : $$(HACKAGE)/$(1)/$$($(1)_version)/$(1).cabal
+	@echo "[CP]   $$($(1)_cabalfile)"
 	@mkdir -p $$(HABS)/$$($(1)_archname)
-	@wget --quiet --directory-prefix=$$(HABS)/$$($(1)_archname) --no-clobber $$($(1)_cabalurl)
-	@mv $$(HABS)/$$($(1)_archname)/$(1).cabal $$@
-	@touch $$@
+	@cp $$< $$@
 
  PKGBUILDS += $$(HABS)/$$($(1)_archname)/PKGBUILD
  $$(HABS)/$$($(1)_archname)/PKGBUILD : $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
@@ -86,6 +88,18 @@ scripts/findconflicts : Distribution/ArchLinux/PkgBuild.o
 %.hi : %.o
 	@:
 
+$(HACKAGE_TARBALL):
+	@echo ''
+	@echo 'Please run "cabal update" to download $(HACKAGE_TARBALL).'
+	@echo ''
+	@false
+
+$(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
+	@echo "[TAR]  $<"
+	@mkdir -p $(HACKAGE)
+	@tar -xf $(HACKAGE_TARBALL) -C $(HACKAGE)
+	@date --iso=seconds >$@
+
 publish::
 	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
 
@@ -95,4 +109,4 @@ clean::
 	@rm -fv scripts/recdeps scripts/reverse_deps scripts/toposort
 	@find Distribution '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
 	@find scripts '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
-	@rm -rf $(HABS)
+	@rm -rf $(HABS) $(HACKAGE)
