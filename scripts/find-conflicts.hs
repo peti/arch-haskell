@@ -1,43 +1,25 @@
--- |
--- Module    : findconflicts: find inconsistencies between versions reqs of a package list
--- Copyright : (c) Rémy Oudompheng 2010
--- License   : BSD3
---
--- Maintainer: Arch Haskell Team <arch-haskell@haskell.org>
--- Stability : provisional
--- Portability:
---
+-- Usage: find-conflicts CabalFile...
 
--- 
--- Usage: findconflicts PKGLIST 00-index.tar
+module Main ( main ) where
 
-import Distribution.ArchLinux.HackageTranslation
-import Distribution.ArchLinux.SystemProvides
-
-import Distribution.Package
-import Distribution.PackageDescription
-import Distribution.Text
+import System.Environment ( getArgs )
+import Distribution.Package ( packageId )
+import Distribution.ArchLinux.HackageTranslation ( getVersionConflicts )
+import Distribution.ArchLinux.SystemProvides ( getDefaultSystemProvides )
+import Distribution.PackageDescription.Parse ( readPackageDescription )
+import Distribution.Verbosity ( silent )
+import Distribution.Text ( disp )
 import Text.PrettyPrint
-
-import qualified Data.ByteString.Lazy as Bytes
-import System.Environment
-import System.Exit
-
-displayConflict :: PackageDescription -> Dependency -> IO ()
-displayConflict pkg dep = do
-  let name = disp $ pkgName $ packageId pkg
-  putStrLn $ render (name <+> text "needs" <+> disp dep)
 
 main :: IO ()
 main = do
-  argv <- getArgs
-  _ <- case argv of
-    _:_:_ -> return ()
-    _ -> exitWith (ExitFailure 1)
-  pkglist <- readFile (argv !! 0)
-  tarball <- Bytes.readFile (argv !! 1)
+  cabalFiles <- getArgs
+  pkgs <- mapM (readPackageDescription silent) cabalFiles
   sysProvides <- getDefaultSystemProvides
-  let cabals = getSpecifiedCabalsFromTarball tarball (lines pkglist)
-      conflicts = getVersionConflicts cabals sysProvides
-  _ <- mapM (uncurry displayConflict) conflicts
-  return ()
+  case getVersionConflicts pkgs sysProvides of
+    []        -> return ()
+    conflicts -> do
+      let name pkg               = disp (packageId pkg)
+          showConflict (pkg,dep) = render (name pkg <+> text "needs" <+> disp dep)
+      mapM_ (putStrLn . showConflict) conflicts
+      fail "conflicts detected"
