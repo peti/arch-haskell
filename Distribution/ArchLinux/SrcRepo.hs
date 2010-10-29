@@ -30,6 +30,7 @@ data SrcRepo = SrcRepo
         -- The path to the repository
     , repo_contents :: M.Map String PkgBuild
     }
+    deriving (Show)
 
 --
 -- | Reads a directory into a package
@@ -53,7 +54,8 @@ getRepoFromDir path = do
   valid <- Dir.doesDirectoryExist path
   if valid
     then do
-      subthings <- Dir.getDirectoryContents path
+      subthings' <- Dir.getDirectoryContents path
+      let subthings = [ path </> x | x <- subthings', x /= ".", x /= ".." ]
       -- Read PkgBuilds
       contents <- foldM insertpkg M.empty subthings
       let result = SrcRepo { repo_path = path , repo_contents = contents }
@@ -64,7 +66,7 @@ insertpkg :: Map String PkgBuild -> FilePath -> IO (Map String PkgBuild)
 insertpkg m dir = do
   pkg <- getPkgFromDir dir
   case pkg of
-    Nothing -> return m
+    Nothing -> fail $ "cannot read PKGBUILD from " ++ show dir
     Just p -> return $ M.insert (takeBaseName dir) p m
 
 ---------------------------------------------------------------------------
@@ -103,7 +105,7 @@ isExternalDep name (SrcRepo {repo_contents = m}) =
   (name `notMember` m) || (name `elem` archProvidedPkgs)
 
 trueDepends :: PkgBuild -> SrcRepo -> [String]
-trueDepends p repo = L.filter (\p -> not $ isExternalDep p repo) (strDepends p)
+trueDepends p repo = L.filter (\p' -> not $ isExternalDep p' repo) (strDepends p)
 
 ------------------------------------------------------------
 
@@ -155,12 +157,12 @@ getReverseDependencyRepo pkgs repo = repo { repo_contents = revdeps }
 isConflicting :: SrcRepo -> Bool
 isConflicting repo = and areConflicting
   where listOfPkgs = M.toList $ repo_contents repo
-        areConflicting = L.map (\(k,pkg) -> pkg `isConflictingWith` repo) listOfPkgs
+        areConflicting = L.map (\(_,pkg) -> pkg `isConflictingWith` repo) listOfPkgs
 
 listVersionConflicts :: SrcRepo -> [String]
 listVersionConflicts repo = L.map fst listConflicting
   where listOfPkgs = M.toList $ repo_contents repo
-        listConflicting = L.filter (\(k,pkg) -> pkg `isConflictingWith` repo) listOfPkgs
+        listConflicting = L.filter (\(_,pkg) -> pkg `isConflictingWith` repo) listOfPkgs
 
 --
 -- | Check package dependencies against the repo
