@@ -37,6 +37,10 @@ TAURBALLS += ${taurball}
 ${taurball} : ${pkgbuildfile}
 	@echo '[GEN]  ${taurball}'
 	@cd ${pkgbuilddir} && makepkg >makepkg.log 2>&1 -m --source --force || (cat makepkg.log; false)
+
+${pkgbuilddir}/users : scripts/reverse-dependencies \$(PKGBUILDS)
+	@echo '[GEN]  \$@'
+	@scripts/reverse-dependencies \$(HABS) ${archname} >\$@
 EOF
 
 done
