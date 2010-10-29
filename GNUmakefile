@@ -19,14 +19,14 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 all::	$(PKGBUILDS)
 	@scripts/find-conflicts $(CABALFILES)
 
-world::	all scripts/toposort chroot-i686/root/.arch-chrooti
+world::	all scripts/toposort chroot-i686/root/.arch-chroot
 	nice -n 20 ./scripts/makeworld
 
 depend::
 	@ghc $(GHCFLAGS) -M scripts/*.hs
 	@mv Makefile dependencies.mk
 
-chroot-i686/root/.arch-chrooti:
+chroot-i686/root/.arch-chroot:
 	@echo "Please run scripts/setup-chroots to create the chroot environment."
 	@false
 
