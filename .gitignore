@@ -12,9 +12,9 @@
 /dependencies.mk
 
 # ignore script binaries
+/scripts/cabal2pkgbuild
+/scripts/find-updates
 /scripts/findconflicts
-/scripts/findupdates
+/scripts/recdeps
 /scripts/reverse_deps
 /scripts/toposort
-/scripts/recdeps
-/scripts/cabal2pkgbuild

@@ -5,7 +5,7 @@ The code in this repository builds a binary ArchHaskell repository for
 Pacman. As a side-effect, PKGBUILD files for AUR are also generated. At
 the heart of the system is the `PKGLIST` file, which determines the set
 of Hackage packages to be included in the distribution. Based on this
-file, a `GNUmakefile` generates the entire repository offering three
+file, a `GNUmakefile` generates the entire repository offering four
 targets:
 
 1. `all`
@@ -17,7 +17,12 @@ targets:
 
     Build everything, including binary packages.
 
-3. `clean`
+3. `updates`
+
+    Find all available updates in the current Hackage database. Only
+    packages mentioned in `PKGLIST` are considered.
+
+4. `clean`
 
     Delete all generated files (except the chroot build sandboxes).
 

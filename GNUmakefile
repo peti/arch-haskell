@@ -7,8 +7,8 @@ HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
 
 GHCFLAGS        := -Wall -O
 
-.PHONY: all world publish clean depend
-all world publish clean::
+.PHONY: all world updates publish clean depend
+all world updates publish clean::
 
 include config.mk
 
@@ -22,7 +22,6 @@ world::	all scripts/toposort
 	nice -n 20 ./scripts/makeworld
 
 depend::
-	@echo "[GEN]  dependencies.mk"
 	@ghc $(GHCFLAGS) -M scripts/*.hs
 	@mv Makefile dependencies.mk
 
@@ -45,6 +44,10 @@ scripts/findconflicts : Distribution/ArchLinux/SystemProvides.o Distribution/Arc
 scripts/findconflicts : Distribution/ArchLinux/PkgBuild.o
 	@echo "[LINK] $@"
 	@ghc $(GHCFLAGS) -package pretty -package Cabal -package bytestring -package tar -o $@ $^
+
+scripts/find-updates : scripts/find-updates.o
+	@echo "[LINK] $@"
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
 
 %.o : %.hs
 	@echo "[GHC]  $<"
@@ -71,6 +74,9 @@ $(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
 
 publish::
 	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
+
+updates::	scripts/find-updates
+	@scripts/find-updates $(PKGLIST) $(HACKAGE)
 
 clean::
 	@rm -v config.mk dependencies.mk
