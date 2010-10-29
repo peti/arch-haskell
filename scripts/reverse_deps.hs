@@ -1,20 +1,16 @@
---
--- | This script output reverse dependencies for the specified package with
--- respect to a ABS-like repository rooted at the current directory
---
+-- This script prints all reverse dependencies for the specified
+-- packages with respect to an ABS-like repository located at the
+-- path given as first command-line argument.
 
-module Main where
+module Main ( main ) where
 
-import Distribution.ArchLinux.SrcRepo
-import System.IO
-import System.Directory
-import System.Environment
-import Control.Monad
+import System.Environment ( getArgs )
+import Distribution.ArchLinux.SrcRepo ( getRepoFromDir, getReverseDependencies )
 
+main :: IO ()
 main = do
-  pkg <- getArgs
-  dot <- getCurrentDirectory
-  repo <- getRepoFromDir dot
+  habs:pkgs <- getArgs
+  repo <- getRepoFromDir habs
   case repo of
-    Nothing -> return ()
-    Just r -> foldM (\a -> \s -> putStrLn s) () (getReverseDependencies pkg r)
+    Nothing -> fail ("cannot load habs tree at " ++ show habs)
+    Just r -> mapM_ putStrLn (filter (`notElem`pkgs) (getReverseDependencies pkgs r))
