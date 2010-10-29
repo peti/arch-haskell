@@ -8,7 +8,7 @@ HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
 GHCFLAGS        := -Wall -O
 
 .PHONY: all world updates publish clean depend
-all world updates publish clean::
+all::
 
 include config.mk
 
@@ -17,13 +17,18 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 	@scripts/pkglist2mk <"$<" >"$@"
 
 all::	$(PKGBUILDS)
+	@scripts/find-conflicts $(CABALFILES)
 
-world::	all scripts/toposort
+world::	all scripts/toposort chroot-i686/root/.arch-chrooti
 	nice -n 20 ./scripts/makeworld
 
 depend::
 	@ghc $(GHCFLAGS) -M scripts/*.hs
 	@mv Makefile dependencies.mk
+
+chroot-i686/root/.arch-chrooti:
+	@echo "Please run scripts/setup-chroots to create the chroot environment."
+	@false
 
 dependencies.mk : depend
 

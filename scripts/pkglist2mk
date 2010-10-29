@@ -22,9 +22,11 @@ while read archname cabalname pkgver pkgrel; do
 ###
 ${hackagefile} : \$(HACKAGE)/.extraction-datestamp
 
+CABALFILES += ${cabalfile}
 ${cabalfile} : ${hackagefile}
+	@rm -f ${pkgbuilddir}/*.cabal
 	@mkdir -p ${pkgbuilddir}
-	@ln -f \$< \$@
+	@cp \$< \$@
 
 PKGBUILDS += ${pkgbuildfile}
 ${pkgbuildfile} : ${cabalfile} scripts/cabal2pkgbuild
