@@ -12,46 +12,14 @@ all world publish clean::
 
 include config.mk
 
-define GEN_PACKAGE_template
- $$(HACKAGE)/$(1)/$$($(1)_version)/$(1).cabal : $(HACKAGE)/.extraction-datestamp
-
- CABALFILES += $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
- $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile) : $$(HACKAGE)/$(1)/$$($(1)_version)/$(1).cabal
-	@echo "[LN]   $$($(1)_cabalfile)"
-	@mkdir -p $$(HABS)/$$($(1)_archname)
-	@ln -f $$< $$@
-
- PKGBUILDS += $$(HABS)/$$($(1)_archname)/PKGBUILD
- $$(HABS)/$$($(1)_archname)/PKGBUILD : $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile)
- $$(HABS)/$$($(1)_archname)/PKGBUILD : scripts/cabal2pkgbuild
-	@echo "[GEN]  $$($(1)_archname)-$$($(1)_version)-$$($(1)_pkgrel)/PKGBUILD"
-	@mkdir -p $$(HABS)/$$($(1)_archname)
-	@scripts/cabal2pkgbuild $$(HABS)/$$($(1)_archname)/$$($(1)_cabalfile) $$(HABS)/$$($(1)_archname)
-	@source $$(HABS)/$$($(1)_archname)/PKGBUILD; [ $$$$pkgname = $$($(1)_archname) ] || \
-	  ( echo "*** package name mismatch: $$$$pkgname != $$($(1)_archname)" \
-	  ; rm -rfv "$$(HABS)/$$($(1)_archname)" \
-	  ; false \
-	  )
-	@sed -r -i -e 's|^pkgrel=[0-9]+$$$$|pkgrel=$$($(1)_pkgrel)|' $$(HABS)/$$($(1)_archname)/PKGBUILD
-	@echo "[MD5]  $$($(1)_archname)-$$($(1)_version)-$$($(1)_pkgrel)/PKGBUILD"
-	@sed -r -i -e "s|^md5sums=.*$$$$|$$$$(cd $$(HABS)/$$($(1)_archname) && makepkg 2>/dev/null -mg)|" $$(HABS)/$$($(1)_archname)/PKGBUILD
-
- AURBALLS += $$(HABS)/$$($(1)_archname)/$$($(1)_aurball)
- $$(HABS)/$$($(1)_archname)/$$($(1)_aurball) : $$(HABS)/$$($(1)_archname)/PKGBUILD
-	@echo "[GEN]  $$($(1)_aurball)"
-	@cd $$(HABS)/$$($(1)_archname) && makepkg >makepkg.log 2>&1 -m --source --force || (cat makepkg.log; false)
-endef
-
-$(foreach pkg,$(PACKAGES),$(eval $(call GEN_PACKAGE_template,$(pkg))))
+config.mk : $(PKGLIST) scripts/pkglist2mk
+	@echo "[GEN]  $@"
+	@scripts/pkglist2mk <"$<" >"$@"
 
 all::	$(PKGBUILDS)
 
 world::	all scripts/toposort
 	nice -n 20 ./scripts/makeworld
-
-config.mk : $(PKGLIST) scripts/pkglist2mk
-	@echo "[GEN]  $@"
-	@scripts/pkglist2mk "$<" >"$@"
 
 depend::
 	@echo "[GEN]  dependencies.mk"
