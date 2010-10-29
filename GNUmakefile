@@ -75,7 +75,7 @@ $(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
 publish::
 	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
 
-updates::	scripts/find-updates
+updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 	@scripts/find-updates $(PKGLIST) $(HACKAGE)
 
 clean::
