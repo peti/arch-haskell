@@ -79,8 +79,8 @@ removeCoreFrom (x@(Dependency n vr):xs) systemContext =
 --
 -- | Translate a generic cabal file into a PGKBUILD
 --
-cabal2pkg :: PackageDescription -> SystemProvides -> (AnnotatedPkgBuild, Maybe String)
-cabal2pkg cabal systemContext
+cabal2pkg :: PackageDescription -> String -> Int -> SystemProvides -> (AnnotatedPkgBuild, Maybe String)
+cabal2pkg cabal archName release systemContext
 
 -- TODO decide if it's a library or an executable,
 -- handle multipackages
@@ -93,6 +93,7 @@ cabal2pkg cabal systemContext
     , pkgBody = stub {
       arch_pkgname = archName
     , arch_pkgver  = vers
+    , arch_pkgrel  = release
     , arch_pkgdesc = case synopsis cabal of
                           [] -> take 80 (description cabal)
                           s  -> s
@@ -133,7 +134,6 @@ cabal2pkg cabal systemContext
                                 `mappend` anyClibraries
                }
 
-    archName = map toLower (if isLibrary then "haskell-" ++ display name else display name)
     name     = pkgName (package cabal)
     vers     = pkgVersion (package cabal)
 
