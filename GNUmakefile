@@ -48,11 +48,11 @@ scripts/find-conflicts : scripts/find-conflicts.o Distribution/ArchLinux/Hackage
 scripts/find-conflicts : Distribution/ArchLinux/SystemProvides.o Distribution/ArchLinux/CabalTranslation.o
 scripts/find-conflicts : Distribution/ArchLinux/PkgBuild.o
 	@echo "[LINK] $@"
-	@ghc $(GHCFLAGS) -package pretty -package Cabal -package bytestring -package tar -o $@ $^
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -package tar -package bytestring -o $@ $^
 
 scripts/find-updates : scripts/find-updates.o
 	@echo "[LINK] $@"
-	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
+	@ghc $(GHCFLAGS) -o $@ $^
 
 scripts/reverse-dependencies : scripts/reverse-dependencies.o Distribution/ArchLinux/SrcRepo.o
 scripts/reverse-dependencies : Distribution/ArchLinux/PkgBuild.o
