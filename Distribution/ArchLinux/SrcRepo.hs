@@ -30,6 +30,7 @@ data SrcRepo = SrcRepo
         -- The path to the repository
     , repo_contents :: M.Map String PkgBuild
     }
+    deriving (Show)
 
 --
 -- | Reads a directory into a package
@@ -53,7 +54,8 @@ getRepoFromDir path = do
   valid <- Dir.doesDirectoryExist path
   if valid
     then do
-      subthings <- Dir.getDirectoryContents path
+      subthings' <- Dir.getDirectoryContents path
+      let subthings = [ path </> x | x <- subthings', x /= ".", x /= ".." ]
       -- Read PkgBuilds
       contents <- foldM insertpkg M.empty subthings
       let result = SrcRepo { repo_path = path , repo_contents = contents }
@@ -64,7 +66,7 @@ insertpkg :: Map String PkgBuild -> FilePath -> IO (Map String PkgBuild)
 insertpkg m dir = do
   pkg <- getPkgFromDir dir
   case pkg of
-    Nothing -> return m
+    Nothing -> fail $ "cannot read PKGBUILD from " ++ show dir
     Just p -> return $ M.insert (takeBaseName dir) p m
 
 ---------------------------------------------------------------------------
