@@ -1,3 +1,4 @@
 upstream/archhaskell-build
 upstream/archlinux
 t/drop-warning-about-arbitrary-version-intervals
+t/generalize-cabal2pkg
