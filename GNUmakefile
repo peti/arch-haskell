@@ -16,7 +16,7 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 	@echo "[GEN]  $@"
 	@scripts/pkglist2mk <"$<" >"$@"
 
-all::	$(PKGBUILDS)
+all::	$(PKGBUILDS) scripts/find-conflicts
 	@scripts/find-conflicts $(CABALFILES)
 
 world::	all scripts/toposort chroot-i686/root/.arch-chroot
