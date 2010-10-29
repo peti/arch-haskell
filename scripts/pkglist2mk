@@ -32,7 +32,6 @@ PKGBUILDS += ${pkgbuildfile}
 ${pkgbuildfile} : ${cabalfile} scripts/cabal2pkgbuild
 	@echo 'cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}'
 	@cd ${pkgbuilddir} && ../../scripts/cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}
-	@echo '[MD5]  ${archname}-${pkgver}-${pkgrel}/PKGBUILD'
 	@sed -r -i -e "s|^md5sums=.*\$\$|\$\$(cd ${pkgbuilddir} && makepkg 2>/dev/null -mg)|" ${pkgbuildfile}
 
 TAURBALLS += ${taurball}
