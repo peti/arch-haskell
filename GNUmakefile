@@ -49,6 +49,11 @@ scripts/find-updates : scripts/find-updates.o
 	@echo "[LINK] $@"
 	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
 
+scripts/reverse-dependencies : scripts/reverse-dependencies.o Distribution/ArchLinux/SrcRepo.o
+scripts/reverse-dependencies : Distribution/ArchLinux/PkgBuild.o
+	@echo "[LINK] $@"
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
+
 %.o : %.hs
 	@echo "[GHC]  $<"
 	@ghc $(GHCFLAGS) -o $@ -c $<
@@ -80,8 +85,8 @@ updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 
 clean::
 	@rm -v config.mk dependencies.mk
-	@rm -fv scripts/cabal2pkgbuild scripts/findconflicts scripts/findupdates
-	@rm -fv scripts/recdeps scripts/reverse_deps scripts/toposort
+	@rm -fv scripts/cabal2pkgbuild scripts/findconflicts scripts/find-updates
+	@rm -fv scripts/recdeps scripts/reverse-dependencies scripts/toposort
 	@find Distribution '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
 	@find scripts '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
 	@rm -rf $(HABS) $(HACKAGE)

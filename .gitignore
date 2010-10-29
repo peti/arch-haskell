@@ -16,5 +16,5 @@
 /scripts/find-updates
 /scripts/findconflicts
 /scripts/recdeps
-/scripts/reverse_deps
+/scripts/reverse-dependencies
 /scripts/toposort
