@@ -5,6 +5,7 @@
 import Distribution.ArchLinux.SrcRepo ( getRepoFromDir, dumpContentsTopo )
 import System.Environment ( getArgs )
 
+main :: IO ()
 main = do
   habs:[] <- getArgs
   repo <- getRepoFromDir habs
