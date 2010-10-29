@@ -4,7 +4,7 @@ set -eu
 
 export LC_ALL=C
 
-(cd habs && ../scripts/toposort) | while read name
+../scripts/toposort habs | while read name
 do
     source habs/$name/PKGBUILD
     pkgspec=$pkgname-$pkgver-$pkgrel
