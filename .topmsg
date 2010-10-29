@@ -1,0 +1,7 @@
+From: Peter Simons <simons@cryp.to>
+Subject: [PATCH] t/generalize-cabal2pkg
+
+The current version of cabal2pkg decides about the name of the generated
+ArchLinux package. This decision, however, should to the taken by the user of
+the function, i.e. the desired package name ought to be passed as a parameter.
+The same applies to the value of $pkgrel, which is currently hard-coded to "1".
