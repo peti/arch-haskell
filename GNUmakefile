@@ -39,9 +39,9 @@ scripts/toposort : scripts/toposort.o Distribution/ArchLinux/PkgBuild.o Distribu
 	@echo "[LINK] $@"
 	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
 
-scripts/findconflicts : scripts/findconflicts.o Distribution/ArchLinux/HackageTranslation.o
-scripts/findconflicts : Distribution/ArchLinux/SystemProvides.o Distribution/ArchLinux/CabalTranslation.o
-scripts/findconflicts : Distribution/ArchLinux/PkgBuild.o
+scripts/find-conflicts : scripts/find-conflicts.o Distribution/ArchLinux/HackageTranslation.o
+scripts/find-conflicts : Distribution/ArchLinux/SystemProvides.o Distribution/ArchLinux/CabalTranslation.o
+scripts/find-conflicts : Distribution/ArchLinux/PkgBuild.o
 	@echo "[LINK] $@"
 	@ghc $(GHCFLAGS) -package pretty -package Cabal -package bytestring -package tar -o $@ $^
 
@@ -85,7 +85,7 @@ updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 
 clean::
 	@rm -v config.mk dependencies.mk
-	@rm -fv scripts/cabal2pkgbuild scripts/findconflicts scripts/find-updates
+	@rm -fv scripts/cabal2pkgbuild scripts/find-conflicts scripts/find-updates
 	@rm -fv scripts/recdeps scripts/reverse-dependencies scripts/toposort
 	@find Distribution '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
 	@find scripts '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv

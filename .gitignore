@@ -14,7 +14,6 @@
 # ignore script binaries
 /scripts/cabal2pkgbuild
 /scripts/find-updates
-/scripts/findconflicts
-/scripts/recdeps
+/scripts/find-conflicts
 /scripts/reverse-dependencies
 /scripts/toposort
