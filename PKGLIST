@@ -1,31 +1,34 @@
-archlinux 0.3.4 1
-cmdargs 0.6.1 1
-csv 0.1.1 1
-digest 0.0.0.8 1
-funcmp 1.5 1
-halipeto 2.3 1
-hasktags 0.68 1
-HaXml 1.20.2 1
-hledger 0.12.1 1
-hledger-lib 0.12.1 1
-hopenssl 1.4 1
-hsemail 1.6 1
-hsyslog 1.4 1
-mtlparse 0.0.1 1
-non-negative 0.1 1
-numeric-prelude 0.2 1
-pandoc 1.6 1
-polyparse 1.4 1
-regexpr 0.5.1 1
-safe 0.2 1
-split 0.1.2.1 1
-storable-record 0.0.2.3 1
-streamproc 1.3 1
-tar 0.3.1.0 1
-texmath 0.3.0.3 1
-transformers 0.2.2.0 1
-utility-ht 0.0.5.1 1
-uulib 0.9.12 1
-xml 1.3.7 1
-zip-archive 0.1.1.6 1
-zlib-bindings 0.0.0 1
+#
+# ArchLinx pkgname      Cabal pkgname           Version         Release
+#
+haskell-archlinux       archlinux               0.3.4           1
+haskell-cmdargs         cmdargs                 0.6.1           1
+haskell-csv             csv                     0.1.1           1
+haskell-digest          digest                  0.0.0.8         1
+haskell-funcmp          funcmp                  1.5             1
+haskell-halipeto        halipeto                2.3             1
+hasktags                hasktags                0.68            1
+haskell-haxml           HaXml                   1.20.2          1
+hledger                 hledger                 0.12.1          1
+haskell-hledger-lib     hledger-lib             0.12.1          1
+haskell-hopenssl        hopenssl                1.4             1
+haskell-hsemail         hsemail                 1.6             1
+haskell-hsyslog         hsyslog                 1.4             1
+haskell-mtlparse        mtlparse                0.0.1           1
+haskell-non-negative    non-negative            0.1             1
+haskell-numeric-prelude numeric-prelude         0.2             1
+haskell-pandoc          pandoc                  1.6             1
+haskell-polyparse       polyparse               1.4             1
+haskell-regexpr         regexpr                 0.5.1           1
+haskell-safe            safe                    0.2             1
+haskell-split           split                   0.1.2.1         1
+haskell-storable-record storable-record         0.0.2.3         1
+haskell-streamproc      streamproc              1.3             1
+haskell-tar             tar                     0.3.1.0         1
+haskell-texmath         texmath                 0.3.0.3         1
+haskell-transformers    transformers            0.2.2.0         1
+haskell-utility-ht      utility-ht              0.0.5.1         1
+haskell-uulib           uulib                   0.9.12          1
+haskell-xml             xml                     1.3.7           1
+haskell-zip-archive     zip-archive             0.1.1.6         1
+haskell-zlib-bindings   zlib-bindings           0.0.0           1
