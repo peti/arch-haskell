@@ -1,50 +1,46 @@
--- |
--- Module    : findupdates: find new packages from Hackage
--- Copyright : (c) Rémy Oudompheng 2010
--- License   : BSD3
---
--- Maintainer: Arch Haskell Team <arch-haskell@haskell.org>
--- Stability : provisional
--- Portability:
---
+-- Usage: findupdates PKGLIST hackage/
 
--- 
--- Usage: findupdates PKGLIST 00-index.tar
+module Main ( main ) where
 
-import Distribution.ArchLinux.HackageTranslation
-import Distribution.Version
-
-import Distribution.Package
-import Distribution.PackageDescription
-import Distribution.Text
-import Text.PrettyPrint
-
-import qualified Data.Map as M
-import qualified Data.ByteString.Lazy as Bytes
+import System.Directory
 import System.Environment
-import System.Exit
-import Data.Maybe
-import Debug.Trace
+import Data.Version
+import Text.ParserCombinators.ReadP
+import Distribution.Package
+import System.FilePath
+import Distribution.Text
+import Data.List
 
-needsUpdate :: GenericPackageDescription -> M.Map PackageName Version -> Maybe PackageIdentifier
-needsUpdate pkg m = case M.lookup (pkgName i) m of
-      Nothing -> trace (render (text "Package" <+> disp (pkgName i) <+> text "does not exist ???")) Nothing
-      Just v -> if v > pkgVersion i
-                then Just i { pkgVersion = v }
-                else Nothing
-  where i = packageId pkg
+readVersion :: String -> Version
+readVersion str =
+  case [ v | (v,[]) <- readP_to_S parseVersion str ] of
+    [ v' ] -> v'
+    _      -> error ("invalid version specifier " ++ show str)
+
+readDirectory :: FilePath -> IO [FilePath]
+readDirectory dirpath = do
+  entries <- getDirectoryContents dirpath
+  return [ x | x <- entries, x /= ".", x /= ".." ]
+
+readPkglist :: FilePath -> IO [[String]]
+readPkglist path = do
+  buf <- readFile path
+  return [ words x | x <- lines buf, x /= [], head x /= '#' ]
+
+discoverUpdates :: FilePath -> PackageIdentifier -> IO [Version]
+discoverUpdates hackage (PackageIdentifier (PackageName pkgname) version) = do
+  versionStrings <- readDirectory (hackage </> pkgname)
+  let versions = map readVersion versionStrings
+  return [ v | v <- versions, v > version ]
 
 main :: IO ()
 main = do
-  argv <- getArgs
-  _ <- case argv of
-    _:_:_ -> return ()
-    _ -> exitWith (ExitFailure 1)
-  pkglist <- readFile (argv !! 0)
-  tarball <- Bytes.readFile (argv !! 1)
-  let allcabals = getCabalsFromTarball tarball
-      cabals = getSpecifiedCabalsFromTarball tarball (lines pkglist)
-      allversions = getLatestVersions allcabals
-      updates = mapMaybe (\p -> needsUpdate p allversions) cabals
-  _ <- mapM (\i -> putStrLn $ render (disp i <+> text "is available")) updates
-  return ()
+  pkglistFile:hackageDir:[] <- getArgs
+  pkglist <- readPkglist pkglistFile
+  let pkgs = [ PackageIdentifier (PackageName pkg) (readVersion v) | _:pkg:v:_:[] <- pkglist ]
+  newVersions <- mapM (discoverUpdates hackageDir) pkgs
+  let updates = [ u | u@(_,vs) <- zip pkgs newVersions, vs /= [] ]
+  flip mapM_ updates $ \(pkg,versions) -> do
+    putStr (display pkg)
+    putStr ": "
+    putStrLn $ concat $ intersperse ", " $ map showVersion versions
