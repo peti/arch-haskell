@@ -323,7 +323,7 @@ readPackage st = do
   cs <- getInput
 
   case cs of
-    _ | "# Contributor"       `isPrefixOf` cs -> do
+    _ | "# Maintainer"       `isPrefixOf` cs -> do
             h <- line cs
             readPackage st { pkgHeader = h }
 
