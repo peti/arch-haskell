@@ -52,7 +52,7 @@ scripts/find-conflicts : Distribution/ArchLinux/PkgBuild.o
 
 scripts/find-updates : scripts/find-updates.o
 	@echo "[LINK] $@"
-	@ghc $(GHCFLAGS) -o $@ $^
+	@ghc $(GHCFLAGS) -package Cabal -o $@ $^
 
 scripts/reverse-dependencies : scripts/reverse-dependencies.o Distribution/ArchLinux/SrcRepo.o
 scripts/reverse-dependencies : Distribution/ArchLinux/PkgBuild.o
