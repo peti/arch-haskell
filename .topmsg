@@ -1,9 +1,10 @@
 To: arch-haskell@haskell.org
 From: Peter Simons <simons@cryp.to>
-Subject: [PATCH] t/drop-obsolete-comment-about-provides
+Subject: drop obsolete comment about 'provides' field
 
 Our PKGBUILD files feature a comment saying that we provide all package
 dependencies and that the user's front-end to pacman must understand
 'provides'. In fact, this is not true: we no longer specify dependencies
-on packages that are provided by GHC. IMHO, this comment ought to be
-removed because it's inaccurate.
+on packages that are provided by GHC. Instead of that comment, I feel we
+should provide a Maintainer: field, which -- according to namcap -- is
+currently missing.
