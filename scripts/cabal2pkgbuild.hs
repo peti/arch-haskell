@@ -4,7 +4,7 @@ import System.Environment ( getArgs )
 import Distribution.PackageDescription.Parse ( readPackageDescription )
 import Distribution.Verbosity ( normal )
 import Distribution.Text ( display )
-import Distribution.ArchLinux.CabalTranslation ( preprocessCabal, cabal2pkg, install_hook_name )
+import Distribution.ArchLinux.CabalTranslation ( preprocessCabal, cabal2pkg', install_hook_name )
 import Distribution.ArchLinux.SystemProvides ( getSystemProvidesFromFiles )
 import Distribution.ArchLinux.PkgBuild ( arch_pkgname, pkgBody )
 
@@ -17,7 +17,7 @@ main = do
   case preprocessCabal cabalSrc systemPkgs of
     Nothing -> fail ("cannot parse and/or resolve " ++ show cabalFile)
     Just cabalPkg -> do
-      let (pkgbuild, hooks) = cabal2pkg cabalPkg archname (read release) systemPkgs
+      let (pkgbuild, hooks) = cabal2pkg' cabalPkg archname (read release) systemPkgs
           header            = "# Maintainer: Arch Haskell Team <arch-haskell@haskell.org>\n"
           body              = display pkgbuild ++ "\n"
       writeFile "PKGBUILD" (header ++ body)
