@@ -80,6 +80,8 @@ $(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
 	@echo "[TAR]  $<"
 	@mkdir -p $(HACKAGE)
 	@tar -xf $(HACKAGE_TARBALL) -C $(HACKAGE)
+	@mkdir -p $(HACKAGE)/haskell-platform/2010.2.0.0
+	@cd $(HACKAGE)/haskell-platform/2010.2.0.0 && wget http://hackage.haskell.org/platform/2010.2.0.0/haskell-platform.cabal
 	@date --iso=seconds >$@
 
 publish::
