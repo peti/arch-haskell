@@ -1,5 +1,4 @@
 From: Peter Simons <simons@cryp.to>
-Subject: [PATCH] An automated system for maintaining AUR and binary repositories
+Subject: [PATCH] t/haskell-platform
 
-This patch integrates the various individual components from archlinux,
-and archlinux-build into a coherent system.
+Add support for haskell-platform.
