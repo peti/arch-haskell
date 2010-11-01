@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in habs/*
+for i in "$@"
 do
   source $i/PKGBUILD
   basename $source | sed -r -e "s/(.*)-(.*).tar.(gz|bz2)/\1 \2 $pkgrel/"
