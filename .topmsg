@@ -1,5 +1,42 @@
 From: Peter Simons <simons@cryp.to>
-Subject: [PATCH] An automated system for maintaining AUR and binary repositories
+Subject: [PATCH] t/use-eval-instead-of-generating-an-explicit-makefile
 
-This patch integrates the various individual components from archlinux,
-and archlinux-build into a coherent system.
+The pkglist2mk  script generates a config.mk file that contains explicit
+rules for every single known package. Earlier versions of the makefile
+used $(eval ..) to generate those rules within Make, and that appeared
+to be faster than the current approach. The purpose of this branch is to
+find out whether that's true. The generated Makefile has the following
+run-times on Overkill:
+
+  $ make clean
+  $ for i in $(seq 7); do time make -j2 PKGLIST=PKGLIST.good; done
+
+  real    7m39.820s             # clean build
+  user    6m46.443s
+  sys     1m27.648s
+
+  real    0m24.559s             # detecting that there's nothing to do
+  user    0m23.802s
+  sys     0m0.647s
+
+  real    0m24.819s
+  user    0m24.052s
+  sys     0m0.710s
+
+  real    0m24.575s
+  user    0m23.882s
+  sys     0m0.633s
+
+  real    0m24.593s
+  user    0m23.875s
+  sys     0m0.660s
+
+  real    0m24.442s
+  user    0m23.705s
+  sys     0m0.683s
+
+  real    0m24.730s
+  user    0m23.965s
+  sys     0m0.703s
+
+Let's see how that compares to an $(eval ...)-based Makefile.
