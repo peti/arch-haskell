@@ -10,38 +10,12 @@ while read archname cabalname pkgver pkgrel; do
       ;;
   esac
 
-  hackagefile="\$(HACKAGE)/${cabalname}/${pkgver}/${cabalname}.cabal"
-  pkgbuilddir="\$(HABS)/${archname}"
-  cabalfile="${pkgbuilddir}/$cabalname-$pkgver-$pkgrel.cabal"
-  pkgbuildfile="${pkgbuilddir}/PKGBUILD"
-  taurball="${pkgbuilddir}/${archname}-${pkgver}-${pkgrel}.src.tar.gz"
+  name=$(echo "${cabalname}" | tr 'A-Z-' 'a-z_')
 
-  cat <<EOF
-###
-### ${archname} ${cabalname} ${pkgver} ${pkgrel}
-###
-${hackagefile} : \$(HACKAGE)/.extraction-datestamp
-
-CABALFILES += ${cabalfile}
-${cabalfile} : ${hackagefile}
-	@rm -f ${pkgbuilddir}/*.cabal
-	@mkdir -p ${pkgbuilddir}
-	@cp \$< \$@
-
-PKGBUILDS += ${pkgbuildfile}
-${pkgbuildfile} : ${cabalfile} scripts/cabal2pkgbuild
-	@echo 'cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}'
-	@cd ${pkgbuilddir} && ../../scripts/cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}
-	@sed -r -i -e "s|^md5sums=.*\$\$|\$\$(cd ${pkgbuilddir} && makepkg 2>/dev/null -mg)|" ${pkgbuildfile}
-
-TAURBALLS += ${taurball}
-${taurball} : ${pkgbuildfile}
-	@echo '[GEN]  ${taurball}'
-	@cd ${pkgbuilddir} && makepkg >makepkg.log 2>&1 -m --source --force || (cat makepkg.log; false)
-
-${pkgbuilddir}/users : scripts/reverse-dependencies \$(PKGBUILDS)
-	@echo '[GEN]  \$@'
-	@scripts/reverse-dependencies \$(HABS) ${archname} >\$@
-EOF
-
+  echo "#"
+  echo "PACKAGES += ${name}"
+  echo "${name}_cabalname := ${cabalname}"
+  echo "${name}_archname := ${archname}"
+  echo "${name}_pkgver := ${pkgver}"
+  echo "${name}_pkgrel := ${pkgrel}"
 done

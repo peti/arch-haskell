@@ -10,7 +10,35 @@ GHCFLAGS        := -Wall -O
 .PHONY: all world updates publish clean depend
 all::
 
+define PACKAGE_template
+  $(HACKAGE)/$(2)/$(4)/$(2).cabal : $(HACKAGE)/.extraction-datestamp
+
+  CABALFILES += $(HABS)/$(3)/$(2)-$(4)-$(5).cabal
+  $(HABS)/$(3)/$(2)-$(4)-$(5).cabal : $(HACKAGE)/$(2)/$(4)/$(2).cabal
+	@mkdir -p $(HABS)/$(3)
+	@rm -f $(HABS)/$(3)/$(2)-*.cabal
+	@cp -v $$< $$@
+
+  PKGBUILDS += $(HABS)/$(3)/PKGBUILD
+  $(HABS)/$(3)/PKGBUILD : $(HABS)/$(3)/$(2)-$(4)-$(5).cabal scripts/cabal2pkgbuild
+	@echo 'cabal2pkgbuild $(2)-$(4)-$(5).cabal $(2) $(5)'
+	@cd $(HABS)/$(3) && ../../scripts/cabal2pkgbuild $(2)-$(4)-$(5).cabal $(2) $(5)
+	@sed -r -i -e "s|^md5sums=.*$$$$|$$$$(cd $(HABS)/$(3) && makepkg 2>/dev/null -mg)|" $(HABS)/$(3)/PKGBUILD
+
+  TAURBALLS += $(HABS)/$(3)/$(3)-$(4)-$(5).src.tar.gz
+  $(HABS)/$(3)/$(3)-$(4)-$(5).src.tar.gz : $(HABS)/$(3)/PKGBUILD
+	@echo '[GEN]  $(3)-$(4)-$(5).src.tar.gz'
+	@cd $(HABS)/$(3) && makepkg >makepkg.log 2>&1 -m --source --force || (cat makepkg.log; false)
+
+  $(HABS)/$(3)/users : scripts/reverse-dependencies $$(PKGBUILDS)
+	@echo '[GEN]  $$@'
+	@scripts/reverse-dependencies $(HABS) $(3) >$$@
+endef
+
 include config.mk
+
+$(foreach pkg,$(PACKAGES),\
+  $(eval $(call PACKAGE_template,$(pkg),$($(pkg)_cabalname),$($(pkg)_archname),$($(pkg)_pkgver),$($(pkg)_pkgrel))))
 
 config.mk : $(PKGLIST) scripts/pkglist2mk
 	@echo "[GEN]  $@"
