@@ -26,6 +26,7 @@ haskell-non-negative            non-negative            0.1             1
 haskell-numeric-prelude         numeric-prelude         0.2             1
 haskell-pandoc                  pandoc                  1.6             2
 haskell-pango                   pango                   0.11.2          1
+haskell-platform                haskell-platform        2010.2.0.0      1
 haskell-polyparse               polyparse               1.4             1
 haskell-regexpr                 regexpr                 0.5.3           2
 haskell-safe                    safe                    0.2             1
