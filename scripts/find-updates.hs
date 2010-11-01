@@ -43,4 +43,4 @@ main = do
   flip mapM_ updates $ \(pkg,versions) -> do
     putStr (display pkg)
     putStr ": "
-    putStrLn $ concat $ intersperse ", " $ map showVersion versions
+    putStrLn $ concat $ intersperse ", " $ map showVersion (sort versions)
