@@ -39,4 +39,34 @@ run-times on Overkill:
   user    0m23.965s
   sys     0m0.703s
 
-Let's see how that compares to an $(eval ...)-based Makefile.
+Let's see how that compares to an $(eval ...)-based Makefile:
+
+  real    7m3.663s
+  user    6m43.264s
+  sys     1m25.978s
+
+  real    0m24.451s
+  user    0m23.315s
+  sys     0m0.760s
+
+  real    0m24.148s
+  user    0m23.405s
+  sys     0m0.677s
+
+  real    0m24.140s
+  user    0m23.398s
+  sys     0m0.680s
+
+  real    0m24.097s
+  user    0m23.402s
+  sys     0m0.633s
+
+  real    0m24.150s
+  user    0m23.422s
+  sys     0m0.670s
+
+  real    0m23.994s
+  user    0m23.222s
+  sys     0m0.713s
+
+Doesn't seem to make much of a difference.
