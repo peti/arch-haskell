@@ -2,7 +2,12 @@
 
 for i in "$@"
 do
-  source $i/PKGBUILD
-  basename $source | sed -r -e "s/(.*)-(.*).tar.(gz|bz2)/\1 \2 $pkgrel/"
+  ( source $i/PKGBUILD
+    if [ -z "${_hkgname}" ]; then
+      basename $source | sed -r -e "s/(.*)-(.*).tar.(gz|bz2)/$pkgname \1 \2 $pkgrel/"
+    else
+      echo "${pkgname} ${_hkgname} ${pkgver} ${pkgrel}"
+    fi
+  ) || exit 1
 done
 
