@@ -10,6 +10,12 @@ while read archname cabalname pkgver pkgrel; do
       ;;
   esac
 
+  dirs="$(echo /var/abs/*/${archname})"
+  if [ -n "${dirs}" ]; then
+    echo >&2 "Not building system package ${archname}."
+    continue
+  fi
+
   hackagefile="\$(HACKAGE)/${cabalname}/${pkgver}/${cabalname}.cabal"
   pkgbuilddir="\$(HABS)/${archname}"
   cabalfile="${pkgbuilddir}/$cabalname-$pkgver-$pkgrel.cabal"
