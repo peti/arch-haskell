@@ -1,7 +1,8 @@
 #
 # ArchLinx pkgname              Cabal pkgname           Version         Release
 #
-haskell-archlinux               archlinux               0.3.4           1
+cabal2arch                      cabal2arch              0.7.6           1
+haskell-archlinux               archlinux               0.3.5           1
 haskell-cairo                   cairo                   0.11.1          1
 haskell-cmdargs                 cmdargs                 0.6.1           1
 haskell-csv                     csv                     0.1.1           1
