@@ -1,5 +1,8 @@
+import Data.Functor
 import System.IO
+import System.FilePath
 import System.Environment
+import System.Directory
 import Control.Monad.RWS
 import Distribution.Package
 import Distribution.Text
@@ -7,18 +10,23 @@ import Data.Version
 import Distribution.Compat.ReadP
 import Text.PrettyPrint
 import qualified Data.Set as Set
+import qualified Data.Map as Map
+import Distribution.PackageDescription.Configuration
+import Distribution.PackageDescription.Parse
+import Distribution.PackageDescription
+import Distribution.Verbosity ( normal )
 
 data Config = Config
-  { pkglist :: PkgSet
-  , syspkglist :: PkgSet
+  { pkgset :: PkgSet
+  , syspkgset :: PkgSet
   , habsdir :: FilePath
   , hackagedir :: FilePath
   }
   deriving (Show)
 
 defaultConfig = Config
-  { pkglist = PkgSet Set.empty
-  , syspkglist = PkgSet Set.empty
+  { pkgset = PkgSet Set.empty
+  , syspkgset = PkgSet Set.empty
   , habsdir = "habs"
   , hackagedir = "hackage"
   }
@@ -52,7 +60,7 @@ newtype PkgSet = PkgSet (Set.Set PkgSpec)
 
 instance Text PkgSet where
   disp (PkgSet ps) = vcat [ disp p | p <- Set.toAscList ps ]
-  parse = fmap (PkgSet . Set.fromList) (many dataLine)
+  parse = PkgSet . Set.fromList <$> many dataLine
     where
       dataLine = do
         _ <- many comment
@@ -79,7 +87,6 @@ parsePkglist buf = map (readText "pkglist entry") dataLines
     wordList' = [ words l | l <- lines buf ]
     wordList  = [ ws | ws <- wordList', ws /= [], head ws /= "#" ]
 
-
 readText :: (Text a) => String -> String -> a
 readText errctx str = maybe err id (simpleParse str)
   where
@@ -87,6 +94,19 @@ readText errctx str = maybe err id (simpleParse str)
 
 main :: IO ()
 main = do
-  buf <- readFile "PKGLIST"
-  let pkglist@(PkgSet ps) = readText "package list" buf
-  putStrLn (display pkglist)
+  argv <- getArgs
+  when (length argv /= 2) (fail "Usage: PKGLIST hackage")
+  let pkglistFile:hackageDir:[] = argv
+  pkgset@(PkgSet _) <- readText "package list" <$> readFile pkglistFile
+  hackage <- discoverHackage hackageDir
+  putStrLn (display pkgset)
+
+discoverHackage :: FilePath -> IO [(PackageName,[Version])]
+discoverHackage hackageDir = do
+  let metaNames = [".",".."]
+      fileNames = ["preferred-versions",".extraction-datestamp"]
+      badNames  = metaNames ++ fileNames
+  packageNames <- filter (`notElem` badNames) <$> getDirectoryContents hackageDir
+  flip mapM packageNames $ \cabalName -> do
+    versions <- filter (`notElem` metaNames) <$> getDirectoryContents (hackageDir </> cabalName)
+    return (readText "cabal package name" cabalName, map (readText "version specifier") versions)
