@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -eu
+shopt -s nullglob
+
+pkglistFile="$1"
+cabalName="$2"
+version="$3"
+
+sed -i -r -e "s|^(.*[ \t]${cabalName})[ \t]+.*|\1 $version 1|" "$pkglistFile"
