@@ -1,25 +1,26 @@
 #
 # ArchLinx pkgname              Cabal pkgname           Version         Release
 #
-cabal2arch                      cabal2arch              0.7.6           1
+cabal2arch                      cabal2arch              0.7.6           2
 haskell-archlinux               archlinux               0.3.5           1
 haskell-attoparsec              attoparsec              0.8.2.0         1
 haskell-binary                  binary                  0.5.0.2         1
-haskell-cmdargs                 cmdargs                 0.6.1           1
-haskell-cmdlib                  cmdlib                  0.2.1           1
-haskell-csv                     csv                     0.1.1           2
+haskell-cairo                   cairo                   0.12.0          1
+haskell-cmdargs                 cmdargs                 0.6.3           1
+haskell-cmdlib                  cmdlib                  0.2.1           2
+haskell-csv                     csv                     0.1.2           2
 haskell-dataenc                 dataenc                 0.13.0.4        1
 haskell-datetime                datetime                0.2             1
 haskell-digest                  digest                  0.0.0.8         1
 haskell-funcmp                  funcmp                  1.5             1
-haskell-gio                     gio                     0.11.1          1
-haskell-glib                    glib                    0.11.2          1
-haskell-gtk                     gtk                     0.11.2          1
+haskell-gio                     gio                     0.12.0          1
+haskell-glib                    glib                    0.12.0          1
+haskell-gtk                     gtk                     0.12.0          1
 haskell-halipeto                halipeto                2.3             2
 haskell-hashed-storage          hashed-storage          0.5.3           1
 haskell-haskeline               haskeline               0.6.3.2         1
 haskell-haxml                   HaXml                   1.20.2          1
-haskell-hledger-lib             hledger-lib             0.12.1          3
+haskell-hledger-lib             hledger-lib             0.12.1          4
 haskell-hopenssl                hopenssl                1.4             1
 haskell-hsemail                 hsemail                 1.6             2
 haskell-hsyslog                 hsyslog                 1.4             1
@@ -28,11 +29,11 @@ haskell-mtlparse                mtlparse                0.1.1           1
 haskell-non-negative            non-negative            0.1             1
 haskell-numeric-prelude         numeric-prelude         0.2             2
 haskell-pandoc                  pandoc                  1.6             3
-haskell-pango                   pango                   0.11.2          1
+haskell-pango                   pango                   0.12.0          1
 haskell-polyparse               polyparse               1.4             1
 haskell-regexpr                 regexpr                 0.5.3           2
-haskell-safe                    safe                    0.2             1
-haskell-split                   split                   0.1.2.1         1
+haskell-safe                    safe                    0.3             1
+haskell-split                   split                   0.1.2.2         1
 haskell-storable-record         storable-record         0.0.2.3         1
 haskell-streamproc              streamproc              1.3             1
 haskell-terminfo                terminfo                0.3.1.3         1
@@ -43,7 +44,7 @@ haskell-uulib                   uulib                   0.9.12          1
 haskell-xml                     xml                     1.3.7           1
 haskell-zip-archive             zip-archive             0.1.1.6         1
 hasktags                        hasktags                0.68            1
-hledger                         hledger                 0.12.1          3
+hledger                         hledger                 0.12.1          4
 #
 # haskell platform 2010.2.0.0
 #
