@@ -7,7 +7,7 @@ HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
 
 GHCFLAGS        := -Wall -O
 
-.PHONY: all world updates publish clean depend
+.PHONY: all world updates src publish clean depend
 all::
 
 include config.mk
@@ -21,6 +21,8 @@ all::	$(PKGBUILDS) scripts/find-conflicts
 
 world::	all scripts/toposort chroot-i686/root/.arch-chroot
 	nice -n 20 ./scripts/makeworld
+
+src::	$(TAURBALLS)
 
 depend::
 	@ghc $(GHCFLAGS) -M scripts/*.hs
