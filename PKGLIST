@@ -25,7 +25,7 @@ haskell-haxml                   HaXml                   1.20.2          1
 haskell-hledger-lib             hledger-lib             0.12.1          5
 haskell-hlint                   hlint                   1.8.3           1
 haskell-hopenssl                hopenssl                1.4             1
-haskell-hsemail                 hsemail                 1.6             2
+haskell-hsemail                 hsemail                 1.7             1
 haskell-hsyslog                 hsyslog                 1.4             1
 haskell-mmap                    mmap                    0.5.7           1
 haskell-mtlparse                mtlparse                0.1.1           1
