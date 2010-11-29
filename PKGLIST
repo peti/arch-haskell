@@ -1,6 +1,7 @@
 #
 # ArchLinx pkgname              Cabal pkgname           Version         Release
 #
+bnfc                            BNFC                    2.4.2.0         1
 cabal2arch                      cabal2arch              0.7.6           3
 cpphs                           cpphs                   1.11            1
 haskell-archlinux               archlinux               0.3.5           1
