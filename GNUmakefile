@@ -85,9 +85,9 @@ $(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
 	@date --iso=seconds >$@
 
 publish::
-	@sudo ln -s -f repo.db chroot-i686/copy/repo/arch-haskell.db
-	@sudo ln -s -f repo.db.tar.gz chroot-i686/copy/repo/arch-haskell.db.tar.gz
-	rsync -vaH chroot-i686/copy/repo/ /usr/local/apache/htdocs/localhost/arch-haskell/
+	@sudo ln -s -f repo.db chroot-i686/copy/repo/haskell.db
+	@sudo ln -s -f repo.db.tar.gz chroot-i686/copy/repo/haskell.db.tar.gz
+	rsync -vaH chroot-i686/copy/repo/ andromeda.kiwilight.com:i686/
 
 updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 	@scripts/find-updates $(PKGLIST) $(HACKAGE)
