@@ -32,7 +32,7 @@ haskell-mmap                    mmap                    0.5.7           1
 haskell-mtlparse                mtlparse                0.1.1           1
 haskell-non-negative            non-negative            0.1             1
 haskell-numeric-prelude         numeric-prelude         0.2             2
-haskell-pandoc                  pandoc                  1.6             3
+haskell-pandoc                  pandoc                  1.6             4
 haskell-pango                   pango                   0.12.0          1
 haskell-polyparse               polyparse               1.4             1
 haskell-regexpr                 regexpr                 0.5.3           2
