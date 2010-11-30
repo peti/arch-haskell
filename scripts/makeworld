@@ -8,7 +8,7 @@ scripts/toposort habs | while read name
 do
     source habs/$name/PKGBUILD
     pkgspec=$pkgname-$pkgver-$pkgrel
-    if [ -f "chroot-i686/copy/repo/$pkgspec-i686.pkg.tar.xz" ]
+    if [ -f "/var/tmp/chroot-i686/copy/repo/$pkgspec-i686.pkg.tar.xz" ]
     then
         echo "Not building $name (already built)."
         continue

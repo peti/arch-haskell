@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE=`pwd`
+BASE=/var/tmp
 targetpkg=$1
 _arch=$2
 
