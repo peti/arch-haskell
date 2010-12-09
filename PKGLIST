@@ -56,6 +56,9 @@ haskell-xml                     xml                     1.3.7           1
 haskell-zip-archive             zip-archive             0.1.1.6         1
 hasktags                        hasktags                0.68            1
 hledger                         hledger                 0.13            1
+hledger-chart                   hledger-chart           0.13            1
+hledger-vty                     hledger-vty             0.13            1
+hledger-web                     hledger-web             0.13            1
 hscolour                        hscolour                1.17            1
 sifflet                         sifflet                 1.2.2           1
 #
