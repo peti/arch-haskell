@@ -869,7 +869,6 @@ haskell-hshyperestraier HsHyperEstraier 0.3.2.1 2
 haskell-hsimpledb hSimpleDB 0.3 3
 haskell-hsjudy HsJudy 0.2 3
 haskell-hskeleton hskeleton 0.1.1 3
-haskell-hslogger hslogger 1.1.0 1
 haskell-hslogger-template hslogger-template 1.1.1 2
 haskell-hslua hslua 0.3 2
 haskell-hsmagick hsmagick 0.4 2
