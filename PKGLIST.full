@@ -1256,7 +1256,6 @@ haskell-phonetic-code phonetic-code 0.1 2
 haskell-pipe Pipe 2.1.2 2
 haskell-pisigma pisigma 0.2 1
 haskell-pkcs1 pkcs1 1.0.2 2
-haskell-platform haskell-platform 2010.2.0.0 2
 haskell-plist plist 0.0.2.1 1
 haskell-plot plot 0.1.2.3 1
 haskell-plugins plugins 1.5.1.4 1
