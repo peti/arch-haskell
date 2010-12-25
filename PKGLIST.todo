@@ -19,31 +19,3 @@ haskell-leksah-server           leksah-server           0.8.0.8         1
 haskell-regex-base              regex-base              0.93.2          1
 haskell-regex-tdfa              regex-tdfa              1.1.6           1
 leksah                          leksah                  0.8.0.8         1
-#
-# Yesod cannot be updated because haskell-text from [extra] is too old.
-#
-haskell-base64-bytestring       base64-bytestring       0.1.0.1         1
-haskell-cereal                  cereal                  0.3.0.0         1
-haskell-clientsession           clientsession           0.4.0.3         1
-haskell-data-default            data-default            0.2             1
-haskell-failure                 failure                 0.1.0.1         1
-haskell-neither                 neither                 0.1.0           1
-haskell-ranges                  ranges                  0.2.2           1
-haskell-email-validate          email-validate          0.2.6           1
-haskell-tagged                  tagged                  0.1.1           1
-haskell-crypto-api              crypto-api              0.2             1
-haskell-puremd5                 pureMD5                 2.1.0.3         1
-haskell-tagsoup                 tagsoup                 0.11.1          1
-haskell-text                    text                    0.10.0.0        1
-haskell-blaze-builder           blaze-builder           0.2.0.1         1
-haskell-enumerator              enumerator              0.4.2           1
-haskell-hamlet                  hamlet                  0.6.0.2         1
-haskell-utf8-string             utf8-string             0.3.6           1
-haskell-wai                     wai                     0.2.2.1         1
-haskell-web-routes              web-routes              0.23.1          1
-haskell-web-routes-quasi        web-routes-quasi        0.6.1.2         1
-haskell-persistent              persistent              0.3.1.1         1
-haskell-xss-sanitize            xss-sanitize            0.2.3           1
-haskell-zlib-bindings           zlib-bindings           0.0.0           1
-haskell-wai-extra               wai-extra               0.2.4.2         1
-haskell-yesod                   yesod                   0.6.4           1
