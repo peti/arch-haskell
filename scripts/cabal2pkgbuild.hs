@@ -5,7 +5,7 @@ import Distribution.PackageDescription.Parse ( readPackageDescription )
 import Distribution.Verbosity ( normal )
 import Distribution.Text ( display )
 import Distribution.ArchLinux.CabalTranslation ( preprocessCabal, cabal2pkg', install_hook_name )
-import Distribution.ArchLinux.SystemProvides ( getSystemProvidesFromFiles )
+import Distribution.ArchLinux.SystemProvides ( parseSystemProvides )
 import Distribution.ArchLinux.PkgBuild ( arch_pkgname, pkgBody )
 
 main :: IO ()
@@ -13,7 +13,9 @@ main = do
   cabalFile:archname:release:[] <- getArgs
   let
   cabalSrc <- readPackageDescription normal cabalFile
-  systemPkgs <- getSystemProvidesFromFiles "../../data/ghc-provides.txt" "../../data/library-providers.txt"
+  ghcProvides <- readFile "../../data/ghc-provides.txt"
+  libraryProviders <- readFile "../../data/library-providers.txt"
+  let systemPkgs = parseSystemProvides ghcProvides libraryProviders
   case preprocessCabal cabalSrc systemPkgs of
     Nothing -> fail ("cannot parse and/or resolve " ++ show cabalFile)
     Just cabalPkg -> do
