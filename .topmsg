@@ -1,0 +1,4 @@
+From: Peter Simons <simons@cryp.to>
+Subject: [PATCH] t/drop-archpackage-type
+
+Drop the obsolete ArchPackage type.
