@@ -5,7 +5,7 @@ module Main ( main ) where
 import System.Environment ( getArgs )
 import Distribution.Package ( packageId )
 import Distribution.ArchLinux.HackageTranslation ( getVersionConflicts )
-import Distribution.ArchLinux.SystemProvides ( getDefaultSystemProvides )
+import Distribution.ArchLinux.SystemProvides ( parseSystemProvides )
 import Distribution.PackageDescription.Parse ( readPackageDescription )
 import Distribution.Verbosity ( silent )
 import Distribution.Text ( disp )
@@ -15,7 +15,10 @@ main :: IO ()
 main = do
   cabalFiles <- getArgs
   pkgs <- mapM (readPackageDescription silent) cabalFiles
-  sysProvides <- getDefaultSystemProvides
+  fc <- readFile "data/ghc-provides.txt"
+  fp <- readFile "data/platform-provides.txt"
+  ft <- readFile "data/library-providers.txt"
+  let sysProvides = parseSystemProvides fc fp ft
   case getVersionConflicts pkgs sysProvides of
     []        -> return ()
     conflicts -> do

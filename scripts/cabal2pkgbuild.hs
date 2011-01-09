@@ -13,9 +13,10 @@ main = do
   cabalFile:archname:release:[] <- getArgs
   let
   cabalSrc <- readPackageDescription normal cabalFile
-  ghcProvides <- readFile "../../data/ghc-provides.txt"
-  libraryProviders <- readFile "../../data/library-providers.txt"
-  let systemPkgs = parseSystemProvides ghcProvides libraryProviders
+  fc <- readFile "../../data/ghc-provides.txt"
+  fp <- readFile "../../data/platform-provides.txt"
+  ft <- readFile "../../data/library-providers.txt"
+  let systemPkgs = parseSystemProvides fc fp ft
   case preprocessCabal cabalSrc systemPkgs of
     Nothing -> fail ("cannot parse and/or resolve " ++ show cabalFile)
     Just cabalPkg -> do
