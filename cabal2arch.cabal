@@ -1,5 +1,5 @@
 name:               cabal2arch
-version:            0.7.6
+version:            0.7.7
 homepage:           http://github.com/archhaskell/
 synopsis:           Create Arch Linux packages from Cabal packages.
 description:        Create Arch Linux packages from Cabal packages.
@@ -10,6 +10,7 @@ author:             Don Stewart <dons@galois.com>
 maintainer:         ArchHaskell Team <arch-haskell@haskell.org>
 cabal-version:      >= 1.6
 build-type:         Simple
+data-files:         data/*.txt
 
 source-repository head
   type:                 git
@@ -28,5 +29,9 @@ executable cabal2arch
         bytestring,
         Cabal > 1.8,
         filepath,
-        archlinux >= 0.3.5,
+        mtl,
+        archlinux >= 0.3.6,
         cmdargs
+
+    other-modules:
+        Cabal2Arch.Util

@@ -17,7 +17,7 @@
 -- rather than makedepends
 
 import Distribution.PackageDescription.Parse
-import Distribution.PackageDescription
+import Distribution.PackageDescription (GenericPackageDescription)
 import Distribution.Simple.Utils hiding (die)
 import Distribution.Verbosity
 import Distribution.Text
@@ -29,7 +29,7 @@ import Distribution.ArchLinux.SystemProvides
 import Distribution.ArchLinux.HackageTranslation
 
 import Control.Monad
-import Control.Concurrent
+import Control.Monad.Error
 import qualified Control.Exception as CE
 
 import Data.List
@@ -38,30 +38,35 @@ import qualified Data.ByteString.Lazy as Bytes
 import Text.PrettyPrint
 
 import Paths_cabal2arch
+import Data.Version (showVersion)
 
 import System.Directory
-import System.Environment
 import System.Exit
 import System.FilePath
 import System.IO
 import System.Process hiding(cwd)
 
 import System.Console.CmdArgs
+import Cabal2Arch.Util
 
 data CmdLnArgs
-    = CmdLnConvertOne { argCabalFile :: String }
-    | CmdLnConvertMany { argPkgList :: FilePath, argTarBall :: FilePath, argRepo :: FilePath }
+    = CmdLnConvertOne { argCabalFile :: String, argCreateTar :: Bool, argDataFiles :: String }
+    | CmdLnConvertMany { argPkgList :: FilePath, argTarBall :: FilePath, argRepo :: FilePath, argDataFiles :: String }
     deriving (Data, Typeable)
 
 cmdLnConvertOne :: CmdLnArgs
-cmdLnConvertOne = CmdLnConvertOne { argCabalFile = "" &= argPos 0 &= typ "FILE|DIR|URL" }
-    &= auto &= name "conv" &= help "Convert a single CABAL file."
+cmdLnConvertOne = CmdLnConvertOne
+    { argCabalFile = "" &= argPos 0 &= typ "FILE|DIR|URL"
+    , argCreateTar = False &= name "tar" &= explicit &= help "Create a tar-ball for the source package."
+    , argDataFiles = "" &= name "sysinfo" &= typDir &= explicit &= help "Use custom system information files."
+    } &= auto &= name "conv" &= help "Convert a single CABAL file."
 
 cmdLnConvertMany :: CmdLnArgs
 cmdLnConvertMany = CmdLnConvertMany
     { argPkgList = def &= argPos 0 &= typFile
     , argTarBall = def &= argPos 1 &= typFile
     , argRepo = def &= argPos 2 &= typDir
+    , argDataFiles = "" &= name "sysinfo" &= typDir &= explicit &= help "Use custom system information files."
     } &= name "convtar" &= help "Convert a tarball of CABAL files into an ABS tree."
     &= details
         [ "  cabal2arch convtar list tar abs"
@@ -73,13 +78,13 @@ cmdLnConvertMany = CmdLnConvertMany
 cmdLnArgs :: CmdLnArgs
 cmdLnArgs = modes [cmdLnConvertOne, cmdLnConvertMany]
     &= program "cabal2arch"
-    &= summary "cabal2arch: Convert .cabal file to ArchLinux source package"
+    &= summary ("cabal2arch, v. " ++ showVersion version ++ ": Convert .cabal file to ArchLinux source package")
 
 main :: IO ()
 main = cmdArgs cmdLnArgs >>= subCmd
 
 subCmd :: CmdLnArgs -> IO ()
-subCmd (CmdLnConvertOne cabalLoc) =
+subCmd (CmdLnConvertOne cabalLoc createTar dataFiles) =
     CE.bracket
         -- We do all our work in a temp directory
         (do _cwd  <- getCurrentDirectory
@@ -114,7 +119,10 @@ subCmd (CmdLnConvertOne cabalLoc) =
             cabalsrc  <- readPackageDescription normal cabalfile
 
             -- Create a package description with all configurations resolved.
-            sysProvides <- getDefaultSystemProvides
+            maybeSysProvides <- runErrorT $ getSystemProvidesFromPath dataFiles
+            sysProvides <- case maybeSysProvides of
+                Left s -> die s
+                Right sp -> return sp
             let finalcabal = preprocessCabal cabalsrc sysProvides
             finalcabal' <- case finalcabal of
                 Nothing -> die "Aborting..."
@@ -141,12 +149,13 @@ subCmd (CmdLnConvertOne cabalLoc) =
             setCurrentDirectory _cwd
 
             _ <- system $ "rm -rf " ++ dir </> "{pkg,src,*.tar.gz}"
-            tarred <- myReadProcess "tar" ["-zcvvf",(dir <.> "tar.gz"), dir] []
-            case tarred of
-                Left (_,s,_)  -> do
-                    hPutStrLn stderr s
-                    die "Unable to tar package"
-                Right _ -> putStrLn ("Created " ++ (_cwd </> dir <.> "tar.gz"))
+            when createTar $ do
+                tarred <- myReadProcess "tar" ["-zcvvf",(dir <.> "tar.gz"), dir] []
+                case tarred of
+                    Left (_,s,_)  -> do
+                        hPutStrLn stderr s
+                        die "Unable to tar package"
+                    Right _ -> putStrLn ("Created " ++ (_cwd </> dir <.> "tar.gz"))
 
             -- If the user created a .cabal2arch.log file, append log results there.
             mh <- getEnvMaybe "HOME"
@@ -164,7 +173,7 @@ subCmd (CmdLnConvertOne cabalLoc) =
                                 (arch_pkgdesc pkgbuild)
                                 (arch_url pkgbuild)) ++ "\n"
 
-subCmd (CmdLnConvertMany pkgListLoc tarballLoc repoLoc) = do
+subCmd (CmdLnConvertMany pkgListLoc tarballLoc repoLoc dataFiles) = do
     pkglist <- readFile pkgListLoc
     tarball <- Bytes.readFile tarballLoc
     repo <- canonicalizePath repoLoc
@@ -175,7 +184,10 @@ subCmd (CmdLnConvertMany pkgListLoc tarballLoc repoLoc) = do
                 hPutStrLn stderr "Warning: ARCH_HASKELL environment variable not set. Set this to the maintainer contact you wish to use. \n E.g. 'Arch Haskell Team <arch-haskell@haskell.org>'"
                 return []
             Just s  -> return s
-    sysProvides <- getDefaultSystemProvides
+    maybeSysProvides <- runErrorT $ getSystemProvidesFromPath dataFiles
+    sysProvides <- case maybeSysProvides of
+        Left s -> die s
+        Right sp -> return sp
     let cabals = getSpecifiedCabalsFromTarball tarball (lines pkglist)
     mapM_ (exportPackage repo email sysProvides) cabals
 
@@ -263,52 +275,3 @@ findCabalFile file _cwd tmp = do
                 then die $ "directory doesn't exist: " ++ show dir
                 else findPackageDesc dir
 
-------------------------------------------------------------------------
--- Some extras
---
-
-die :: String -> IO a
-die s = do
-    hPutStrLn stderr $ "cabal2pkg:\n" ++ s
-    exitWith (ExitFailure 1)
-
--- Safe wrapper for getEnv
-getEnvMaybe :: String -> IO (Maybe String)
-getEnvMaybe _name = CE.handle ((const :: a -> CE.SomeException -> a) $ return Nothing) (Just `fmap` getEnv _name)
-
-------------------------------------------------------------------------
-
---
--- Strict process reading
---
-myReadProcess :: FilePath                              -- ^ command to run
-            -> [String]                              -- ^ any arguments
-            -> String                                -- ^ standard input
-            -> IO (Either (ExitCode,String,String) String)  -- ^ either the stdout, or an exitcode and any output
-
-myReadProcess cmd _args input = CE.handle (return . handler) $ do
-    (inh,outh,errh,pid) <- runInteractiveProcess cmd _args Nothing Nothing
-
-    output  <- hGetContents outh
-    outMVar <- newEmptyMVar
-    _ <- forkIO $ (CE.evaluate (length output) >> putMVar outMVar ())
-
-    errput  <- hGetContents errh
-    errMVar <- newEmptyMVar
-    _ <- forkIO $ (CE.evaluate (length errput) >> putMVar errMVar ())
-
-    when (not (null input)) $ hPutStr inh input
-    takeMVar outMVar
-    takeMVar errMVar
-    ex <- CE.catch (waitForProcess pid) ((const :: a -> CE.SomeException -> a) $ return ExitSuccess)
-    hClose outh
-    hClose inh          -- done with stdin
-    hClose errh         -- ignore stderr
-
-    return $ case ex of
-        ExitSuccess   -> Right output
-        ExitFailure _ -> Left (ex, errput, output)
-
-    where
-        handler (ExitFailure e) = Left (ExitFailure e,"","")
-        handler e               = Left (ExitFailure 1, show e, "")
