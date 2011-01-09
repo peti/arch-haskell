@@ -6,7 +6,7 @@ Maintainer: Arch Haskell Team <arch-haskell@haskell.org>
 
 > module Distribution.ArchLinux.SystemProvides
 >  ( SystemProvides(..)
->  , getDefaultSystemProvides
+>  , emptySystemProvides
 >  , parseSystemProvides
 >  ) where
 
@@ -30,33 +30,36 @@ A big structure holding data about ArchLinux
 >      -- ^
 >      -- A list of Dependencies which are automatically satified
 >      -- when GHC is installed.
+>   , platformPackages :: [Dependency]
+>      -- ^
+>      -- A list of packages to preferably use (e.g. Haskell Platform)
 >   , translationTable :: M.Map String String
 >      -- ^
 >      -- A hash-map where keys are library names and values are
 >      -- names of the corresponding ArchLinux package.
 >   }
+>   deriving (Show,Eq)
 
-Get SystemProvides from package-installed files
+Empty SystemProvides
 
-> getDefaultSystemProvides :: IO SystemProvides
-> getDefaultSystemProvides = do
->   fc <- readFile =<< getDataFileName ("data" </> "ghc-provides.txt")
->   ft <- readFile =<< getDataFileName ("data" </> "library-providers.txt")
->   return $ parseSystemProvides fc ft
+> emptySystemProvides = SystemProvides [] [] M.empty
 
-> parseSystemProvides :: String -> String -> SystemProvides
-> parseSystemProvides sPkg sTranslation =
+Get SystemProvides from files.
+
+> parseSystemProvides :: String -> String -> String -> SystemProvides
+> parseSystemProvides sPkg sPlat sTranslation =
 >          SystemProvides { corePackages = parseDeplist sPkg
+>                         , platformPackages = parseDeplist sPlat
 >                         , translationTable = parseTranslationTable sTranslation }
 
-Extract GHC-provided dependencies from a file
+Extract a list of dependency descriptions from a file
 
 > depstr2hs :: String -> Maybe Dependency
 > depstr2hs s | s == "" || head s == '#' = Nothing
 >             | otherwise = simpleParse s
 
 > parseDeplist :: String -> [Dependency]
-> parseDeplist srcfile1 = mapMaybe depstr2hs $ lines srcfile1
+> parseDeplist srcfile = mapMaybe depstr2hs $ lines srcfile
 
 Now we translate the "library-providers" file. Any line beginning with "# "
 or lines with something else than two words are discarded. Lines should have
