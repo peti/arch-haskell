@@ -10,48 +10,21 @@ targets:
 
 1. `all`
 
-    Build the entire "habs" tree, but don't  compile binary packages.
-    This is the default target.
+    Build the entire "habs" tree and perform some basic consistency
+    checks. This is the default target.
 
 2. `world`
 
-    Build everything, including binary packages.
+    This target implicitly runs `all`, and then build all binary
+    packages. That procedure requires a chroot sandbox, which can be
+    created by running the script `scripts/setup-chroots`.
 
 3. `updates`
 
     Find all available updates in the current Hackage database. Only
-    packages mentioned in `PKGLIST` are considered.
+    packages mentioned in `PKGLIST` are considered. The hackage database
+    should be updated first by running `cabal update`.
 
 4. `clean`
 
     Delete all generated files (except the chroot build sandboxes).
-
-The `world` build phase requires a chroot sandbox that can be created by
-running `scripts/setup-chroots`.
-
-Consistency checks of the `PKGLIST` file can be performed as follows:
-
-    # Update the Hackage tarball
-    cabal update
-
-    # find inconsistencies
-    make scripts/findconflicts
-    scripts/findconflicts PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar
-
-    # find updates
-    make scripts/findupdates
-    scripts/findupdates PKGLIST ~/.cabal/packages/hackage.haskell.org/00-index.tar
-
-This repository is maintained with TopGit. To initialize the various
-origins, run the following commands:
-
-    git remote add --no-tags upstream/archlinux git@github.com:archhaskell/archlinux.git
-    git config --replace-all remote.upstream/archlinux.fetch master:upstream/archlinux
-
-    git remote add --no-tags upstream/archhaskell-build git://github.com/remyoudompheng/archhaskell-build.git
-    git config --replace-all remote.upstream/archhaskell-build.fetch master:upstream/archhaskell-build
-
-    git remote add --no-tags upstream/habs git@github.com:archhaskell/habs.git
-    git config --replace-all remote.upstream/habs.fetch master:upstream/habs
-
-    tg remote --populate origin
