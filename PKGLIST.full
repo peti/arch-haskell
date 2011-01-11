@@ -25,7 +25,7 @@ bookshelf Bookshelf 0.1.5 1
 breakout breakout 0.0.2 2
 brians-brain brians-brain 0.0.1 2
 c2hs c2hs 0.16.2 1
-cabal2arch cabal2arch 0.7.6 4
+cabal2arch cabal2arch 0.7.6 5
 cabal2doap cabal2doap 0.2 2
 cabal2spec cabal2spec 1.0 2
 cabalgraph cabalgraph 0.1 2
@@ -173,7 +173,7 @@ haskell-async async 1.2 2
 haskell-atom atom 1.0.7 2
 haskell-attempt attempt 0.3.0 2
 haskell-attojson AttoJson 0.5.8 2
-haskell-attoparsec attoparsec 0.8.2.0 2
+haskell-attoparsec attoparsec 0.8.3.0 1
 haskell-attoparsec-enumerator attoparsec-enumerator 0.2 2
 haskell-attoparsec-iteratee attoparsec-iteratee 0.1.1 2
 haskell-augeas augeas 0.3.3 2
@@ -235,7 +235,7 @@ haskell-bitstring bitstring 0.0.0 2
 haskell-bitsyntax BitSyntax 0.3.2 3
 haskell-bktrees bktrees 0.3 2
 haskell-blas blas 0.7.6 3
-haskell-blaze-builder blaze-builder 0.2.0.1 2
+haskell-blaze-builder blaze-builder 0.2.1.3 1
 haskell-blaze-html blaze-html 0.2.4.0 2
 haskell-blocking-transactions blocking-transactions 0.1.0.5 2
 haskell-blogination blogination 0.5 3
@@ -252,7 +252,7 @@ haskell-buildbox buildbox 1.2.1.0 2
 haskell-buster buster 2.51 3
 haskell-buster-gtk buster-gtk 2.0 3
 haskell-buster-network buster-network 1.2 3
-haskell-byteorder byteorder 1.0.1 3
+haskell-byteorder byteorder 1.0.3 1
 haskell-bytestring bytestring 0.9.1.7 2
 haskell-bytestring-class bytestring-class 0.0.0 2
 haskell-bytestring-csv bytestring-csv 0.1.2 3
@@ -311,7 +311,7 @@ haskell-clase CLASE 2009.2.11 3
 haskell-clash clash 0.1.2.1 2
 haskell-classify classify 2008.11.17 3
 haskell-classyprelude ClassyPrelude 0.1 2
-haskell-clientsession clientsession 0.4.0.3 2
+haskell-clientsession clientsession 0.4.1 1
 haskell-clock clock 0.1.2.1 3
 haskell-cmath cmath 0.3 2
 haskell-cmdargs cmdargs 0.6.5 2
@@ -377,7 +377,7 @@ haskell-crc16 crc16 0.1.0 3
 haskell-crc16-table crc16-table 0.1 2
 haskell-criterion criterion 0.5.0.5 2
 haskell-crockford crockford 0.2 2
-haskell-crypto-api crypto-api 0.2 2
+haskell-crypto-api crypto-api 0.2.1 1
 haskell-cryptocipher cryptocipher 0.2 2
 haskell-crypto Crypto 4.2.2 2
 haskell-cryptohash cryptohash 0.6.1 2
@@ -422,7 +422,7 @@ haskell-datetime datetime 0.2 2
 haskell-dbf dbf 0.0.0.2 3
 haskell-dbmigrations dbmigrations 0.3 2
 haskell-dbus-client dbus-client 0.4.0.2 2
-haskell-dbus-core dbus-core 0.8.5.2 2
+haskell-dbus-core dbus-core 0.8.5.3 1
 haskell-dbus DBus 0.4 3
 haskell-debian-binary debian-binary 0.0.1 3
 haskell-debian debian 3.47 2
@@ -441,7 +441,7 @@ haskell-dgs dgs 0.2 2
 haskell-diagrams diagrams 0.2.2 2
 haskell-diffarray diffarray 0.1 2
 haskell-diff Diff 0.1.2 2
-haskell-digest digest 0.0.0.8 2
+haskell-digest digest 0.0.0.9 1
 haskell-digits digits 0.2 2
 haskell-dimensional dimensional 0.8.0.1 2
 haskell-direct-daemonize direct-daemonize 1.0 2
@@ -477,12 +477,12 @@ haskell-eithert EitherT 0.0.1 2
 haskell-either-unwrap either-unwrap 1.1 2
 haskell-elerea elerea 2.1.0 2
 haskell-elf elf 0.22 2
-haskell-email-validate email-validate 0.2.5 3
+haskell-email-validate email-validate 0.2.6 1
 haskell-emgm emgm 0.3.1 3
 haskell-encode Encode 1.3.4 2
 haskell-encoding encoding 0.6.3 2
 haskell-enumerable enumerable 0.0.3 3
-haskell-enumerator enumerator 0.4.2 2
+haskell-enumerator enumerator 0.4.4 1
 haskell-enummap EnumMap 0.0.2 3
 haskell-epic epic 0.1.5 2
 haskell-epoll epoll 0.2.2 2
@@ -515,7 +515,7 @@ haskell-external-sort external-sort 0.2 3
 haskell-extra Extra 1.33 3
 haskell-fad fad 1.0 3
 haskell-failable-list failable-list 0.2 2
-haskell-failure failure 0.1.0 2
+haskell-failure failure 0.1.0.1 1
 haskell-fair-predicates fair-predicates 0.1.1 3
 haskell-fastcgi fastcgi 3001.0.2.3 2
 haskell-fastirc fastirc 0.2.0 2
@@ -686,8 +686,8 @@ haskell-hake hake 1.3.4 2
 haskell-hakyll hakyll 2.4 2
 haskell-halex HaLeX 1.1.1 3
 haskell-halfs halfs 0.2 3
-haskell-halipeto halipeto 2.3 2
-haskell-hamlet hamlet 0.6.0 2
+haskell-halipeto halipeto 2.3 3
+haskell-hamlet hamlet 0.6.1.2 1
 haskell-hamusic hamusic 0.1.2.1 3
 haskell-happs-data HAppS-Data 0.9.3 3
 haskell-happshelpers HAppSHelpers 0.11 2
@@ -1033,7 +1033,7 @@ haskell-libmpd libmpd 0.5.0 2
 haskell-liboleg liboleg 2010.1.10.0 2
 haskell-libxml-enumerator libxml-enumerator 0.4.0.2 2
 haskell-libxml libxml 0.1.1 3
-haskell-libxml-sax libxml-sax 0.6.0.2 2
+haskell-libxml-sax libxml-sax 0.6.1.1 2
 haskell-libzip LibZip 0.2.0 2
 haskell-lighttpd-conf lighttpd-conf 0.4 3
 haskell-linear-maps linear-maps 0.6.1 3
@@ -1155,7 +1155,7 @@ haskell-nano-hmac nano-hmac 0.2.0 3
 haskell-nano-md5 nano-md5 0.1.2 2
 haskell-nat nat 0.2 3
 haskell-natural-sort natural-sort 0.1.1 2
-haskell-neither neither 0.1.0 2
+haskell-neither neither 0.1.0 3
 haskell-nemesis nemesis 2010.10.4.1.1 2
 haskell-netclock netclock 0.1 2
 haskell-net-concurrent net-concurrent 0.1.0 2
@@ -1223,7 +1223,7 @@ haskell-osx-ar osx-ar 0.11 2
 haskell-pageio PageIO 0.0.3 3
 haskell-palindromes palindromes 0.2 2
 haskell-panda panda 2009.4.1 3
-haskell-pandoc pandoc 1.6 5
+haskell-pandoc pandoc 1.6 6
 haskell-pango pango 0.12.0 2
 haskell-parallel-tree-search parallel-tree-search 0.4.1 3
 haskell-parameterized-data parameterized-data 0.1.5 2
@@ -1247,7 +1247,7 @@ haskell-penn-treebank penn-treebank 0.1.0.1 3
 haskell-perfecthash PerfectHash 0.1.3 3
 haskell-permutation permutation 0.4.1 3
 haskell-persistent-map persistent-map 0.3.5 3
-haskell-persistent persistent 0.3.0.1 2
+haskell-persistent persistent 0.3.1.3 1
 haskell-persistent-postgresql persistent-postgresql 0.3.0 2
 haskell-persistent-sqlite persistent-sqlite 0.3.0 2
 haskell-pgm pgm 0.1.1 3
@@ -1317,7 +1317,7 @@ haskell-pugs-hsregex pugs-hsregex 1.0 3
 haskell-pugs-hssyck pugs-HsSyck 0.41 3
 haskell-pulse-simple pulse-simple 0.1.12 3
 haskell-pure-fft pure-fft 0.2.0 3
-haskell-puremd5 pureMD5 2.1.0.3 2
+haskell-puremd5 pureMD5 2.1.0.3 3
 haskell-pure-priority-queue pure-priority-queue 0.14 2
 haskell-qio QIO 1.0 2
 haskell-quadedge QuadEdge 0.2 2
@@ -1498,6 +1498,7 @@ haskell-stmcontrol stmcontrol 0.1 3
 haskell-stm-io-hooks stm-io-hooks 0.6.0 3
 haskell-stmonadtrans STMonadTrans 0.3 2
 haskell-storable-complex storable-complex 0.2.1 2
+haskell-storable-endian storable-endian 0.2.3 1
 haskell-storable-record storable-record 0.0.2.3 2
 haskell-storable storable 0.1 3
 haskell-storable-tuple storable-tuple 0.0.2 2
@@ -1548,7 +1549,7 @@ haskell-tagged tagged 0.1.1 2
 haskell-taglib taglib 0.1.1 3
 haskell-tagsoup-ht tagsoup-ht 0.3 3
 haskell-tagsoup-parsec tagsoup-parsec 0.0.7 2
-haskell-tagsoup tagsoup 0.11.1 2
+haskell-tagsoup tagsoup 0.12 1
 haskell-takusen Takusen 0.8.6 2
 haskell-tbox tbox 0.1.0 2
 haskell-tcache TCache 0.6.5 3
@@ -1685,12 +1686,12 @@ haskell-visual-graphrewrite visual-graphrewrite 0.4.0.1 2
 haskell-vte vte 0.12.0 2
 haskell-vty-ui vty-ui 0.4 2
 haskell-vty vty 4.4.0.0.1 2
-haskell-wai-extra wai-extra 0.2.4 2
+haskell-wai-extra wai-extra 0.2.4.2 1
 haskell-wai-frontend-monadcgi wai-frontend-monadcgi 0.0.0 2
 haskell-wai-handler-devel wai-handler-devel 0.1.1 2
 haskell-wai-handler-fastcgi wai-handler-fastcgi 0.2.2 2
 haskell-wai-handler-snap wai-handler-snap 0.0.0.1 2
-haskell-wai wai 0.2.2 2
+haskell-wai wai 0.2.2.1 1
 haskell-wavesurfer wavesurfer 0.0.6 3
 haskell-wave WAVE 0.1.1 3
 haskell-webbits-html WebBits-Html 1.0.2 2
@@ -1699,11 +1700,11 @@ haskell-web-encodings web-encodings 0.3.0.3 2
 haskell-webkit webkit 0.12.0 2
 haskell-web-routes-hsp web-routes-hsp 0.21.1 2
 haskell-web-routes-mtl web-routes-mtl 0.19.1 2
-haskell-web-routes-quasi web-routes-quasi 0.6.1 2
+haskell-web-routes-quasi web-routes-quasi 0.6.2 1
 haskell-web-routes-regular web-routes-regular 0.18.1 2
 haskell-web-routes-th web-routes-th 0.20.1 2
 haskell-web-routes-transformers web-routes-transformers 0.19.1 2
-haskell-web-routes web-routes 0.23.1 2
+haskell-web-routes web-routes 0.23.2 1
 haskell-webserver webserver 0.4.2 2
 haskell-websockets websockets 0.1.2.3 2
 haskell-whim whim 0.1.1 3
@@ -1743,7 +1744,7 @@ haskell-xine xine 0.0.0.2 2
 haskell-xml-basic xml-basic 0.1.1.1 2
 haskell-xml-parsec xml-parsec 1.0.3 3
 haskell-xml-prettify xml-prettify 0.1.0.1 2
-haskell-xml-types xml-types 0.1.1 2
+haskell-xml-types xml-types 0.1.2 1
 haskell-xml xml 1.3.7 2
 haskell-xmms2-client-glib xmms2-client-glib 0.0.6.0 2
 haskell-xmms2-client xmms2-client 0.0.6.0 2
@@ -1751,7 +1752,7 @@ haskell-xmpp XMPP 0.1.2 3
 haskell-xosd xosd 0.2 2
 haskell-xsact xsact 1.7.3 1
 haskell-xsd xsd 0.3.3 2
-haskell-xss-sanitize xss-sanitize 0.2.3 2
+haskell-xss-sanitize xss-sanitize 0.2.4 1
 haskell-xtc xtc 1.0 3
 haskell-yahoo-web-search yahoo-web-search 0.2 3
 haskell-yajl-enumerator yajl-enumerator 0.2.0.3 2
@@ -1760,7 +1761,7 @@ haskell-yamlreference YamlReference 0.9.3 3
 haskell-yaml yaml 0.4.1 2
 haskell-yampa Yampa 0.9.2.3 3
 haskell-ycextra ycextra 0.1 3
-haskell-yesod yesod 0.6.1 2
+haskell-yesod yesod 0.6.7 1
 haskell-yhccore yhccore 0.9.1 3
 haskell-yices yices 0.0.0.8 2
 haskell-yjftp yjftp 0.3.6.2 3
@@ -1771,7 +1772,7 @@ haskell-yuigrid yuiGrid 0.1 3
 haskell-zcache zcache 0.0.0 2
 haskell-zeromq-haskell zeromq-haskell 0.4.1 2
 haskell-zfs ZFS 0.0.1 3
-haskell-zip-archive zip-archive 0.1.1.6 2
+haskell-zip-archive zip-archive 0.1.1.6 3
 haskell-zipedit zipedit 0.2.3 3
 haskell-zipfold ZipFold 0.1.4 3
 haskell-zipper zipper 0.3.1 2
