@@ -1,47 +1,30 @@
-cabal2arch
-==========
+ArchHaskell
+===========
 
-cabal2arch is a tool used to convert CABAL ([Common Architecture for Building
-Applications and Libraries][1]) files into [ArchLinux][2] source packages.
+The code in this repository builds a binary ArchHaskell repository for
+Pacman. As a side-effect, PKGBUILD files for AUR are also generated. At
+the heart of the system is the `PKGLIST` file, which determines the set
+of Hackage packages to be included in the distribution. Based on this
+file, a `GNUmakefile` generates the entire repository offering four
+targets:
 
-Commands
---------
+1. `all`
 
-cabal2arch has two subcommands:
+    Build the entire "habs" tree and perform some basic consistency
+    checks. This is the default target.
 
-1. `conv`
+2. `world`
 
-    Convert a single package description (CABAL file) into a ArchLinux source
-    package.
+    This target implicitly runs `all`, and then build all binary
+    packages. That procedure requires a chroot sandbox, which can be
+    created by running the script `scripts/setup-chroots`.
 
-1. `convtar`
+3. `updates`
 
-    Given a package list and a tarball of package descriptions create tree of
-    ArchLinux source packages for the listed packages.  The package list must
-    contain lines of the format "<pkgname> <version>".
+    Find all available updates in the current Hackage database. Only
+    packages mentioned in `PKGLIST` are considered. The hackage database
+    should be updated first by running `cabal update`.
 
-Example usage
--------------
+4. `clean`
 
-Examples for `conv`:
-
-    % cabal2arch conv puremd5.cabal
-    % cabal2arch conv http://hackage.haskell.org/packages/archive/pureMD5/2.1.0.1/pureMD5.cabal
-
-Example for `convtar`:
-
-    % cabal2arch convtar PKGLIST 00-index.tar my-abs
-
-Build and install
------------------
-
-Run the well-known triple:
-
-    % runhaskell Setup.lhs configure
-    % runhaskell Setup.lhs build
-    % runhaskell Setup.lhs install
-
-Adding CABAL options as needed.
-
-[1]: http://www.haskell.org/ghc/docs/latest/html/Cabal/
-[2]: http://www.archlinux.org/
+    Delete all generated files (except the chroot build sandboxes).

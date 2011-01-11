@@ -1,0 +1,54 @@
+#! /bin/bash
+
+shopt -s nullglob
+set -eu
+
+while read archname cabalname pkgver pkgrel; do
+  case "${archname},${cabalname},${pkgver},${pkgrel}" in
+    ",,,"|"#"*)
+      continue			# ignore empty line or comment
+      ;;
+  esac
+
+  dirs="$(echo /var/abs/*/${archname})"
+  if [ -n "${dirs}" ]; then
+    echo >&2 "Not building system package ${archname}."
+    continue
+  fi
+
+  hackagefile="\$(HACKAGE)/${cabalname}/${pkgver}/${cabalname}.cabal"
+  pkgbuilddir="\$(HABS)/${archname}"
+  cabalfile="${pkgbuilddir}/$cabalname-$pkgver-$pkgrel.cabal"
+  pkgbuildfile="${pkgbuilddir}/PKGBUILD"
+  taurball="${pkgbuilddir}/${archname}-${pkgver}-${pkgrel}.src.tar.gz"
+
+  cat <<EOF
+###
+### ${archname} ${cabalname} ${pkgver} ${pkgrel}
+###
+${hackagefile} : \$(HACKAGE)/.extraction-datestamp
+
+CABALFILES += ${cabalfile}
+${cabalfile} : ${hackagefile}
+	@rm -f ${pkgbuilddir}/*.cabal
+	@mkdir -p ${pkgbuilddir}
+	@cp \$< \$@
+
+PKGBUILDS += ${pkgbuildfile}
+${pkgbuildfile} : ${cabalfile} scripts/cabal2pkgbuild
+	@echo 'cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}'
+	@cd ${pkgbuilddir} && ../../scripts/cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}
+	@sed -r -i -e '/^md5sums=/d' ${pkgbuildfile}
+	@cd ${pkgbuilddir} && makepkg -mg 2>/dev/null >>PKGBUILD
+
+TAURBALLS += ${taurball}
+${taurball} : ${pkgbuildfile}
+	@echo '[GEN]  ${taurball}'
+	@cd ${pkgbuilddir} && makepkg >makepkg.log 2>&1 -m --source --force || (cat makepkg.log; false)
+
+${pkgbuilddir}/users : scripts/reverse-dependencies \$(PKGBUILDS)
+	@echo '[GEN]  \$@'
+	@scripts/reverse-dependencies \$(HABS) ${archname} >\$@
+EOF
+
+done

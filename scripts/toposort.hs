@@ -1,15 +1,14 @@
 --
--- | This test reads the current directory and dumps a topologically sorted package list
+-- | This test reads the given directory and dumps a topologically sorted package list.
 --
 
-import Distribution.ArchLinux.SrcRepo
-import System.IO
-import System.Directory
-import Control.Monad
+import Distribution.ArchLinux.SrcRepo ( getRepoFromDir, dumpContentsTopo )
+import System.Environment ( getArgs )
 
+main :: IO ()
 main = do
-  dot <- getCurrentDirectory
-  repo <- getRepoFromDir dot
+  habs:[] <- getArgs
+  repo <- getRepoFromDir habs
   case repo of
-    Nothing -> return ()
-    Just r -> foldM (\a -> \s -> putStrLn s) () (dumpContentsTopo r)
+    Nothing -> fail ("cannot load habs tree at " ++ show habs)
+    Just r -> mapM_ putStrLn (dumpContentsTopo r)

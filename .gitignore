@@ -1,5 +1,19 @@
-dist/
-*.hi
-*.o
-*~
-.*.swp
+# ignore the chroot builds
+/chroot-*/*
+
+# ignore habs sub-directory
+/habs/*
+
+# ignore hackage sub-directory
+/hackage/*
+
+# ignore generated makefile configuration
+/config.mk
+/dependencies.mk
+
+# ignore script binaries
+/scripts/cabal2pkgbuild
+/scripts/find-updates
+/scripts/find-conflicts
+/scripts/reverse-dependencies
+/scripts/toposort
