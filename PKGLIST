@@ -33,7 +33,7 @@ haskell-hamlet hamlet 0.6.1.2 2
 haskell-haskell-src-exts haskell-src-exts 1.9.6 3
 haskell-haxml HaXml 1.20.2 3
 haskell-hledger-lib hledger-lib 0.12.1 7
-haskell-hlint hlint 1.8.3 3
+haskell-hlint hlint 1.8.4 1
 haskell-hopenssl hopenssl 1.4 3
 haskell-hsemail hsemail 1.7 3
 haskell-hsyslog hsyslog 1.4 3

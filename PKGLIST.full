@@ -792,7 +792,7 @@ haskell-hjson hjson 1.2 3
 haskell-hlcm hlcm 0.2.2 3
 haskell-hledger-lib hledger-lib 0.12.1 7
 haskell-hlibev hlibev 0.2.8 3
-haskell-hlint hlint 1.8.3 3
+haskell-hlint hlint 1.8.4 1
 haskell-hlist HList 0.2.3 3
 haskell-hlongurl hlongurl 0.9.3 4
 haskell-hmarkup hmarkup 3000.0.1 4
