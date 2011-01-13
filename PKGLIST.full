@@ -404,7 +404,7 @@ haskell-data-aviary data-aviary 0.2.3 3
 haskell-data-binary-ieee754 data-binary-ieee754 0.4.2.1 3
 haskell-data-category data-category 0.3.0.1 3
 haskell-data-clist data-clist 0.0.4 3
-haskell-data-default data-default 0.2 3
+haskell-data-default data-default 0.2.0.1 1
 haskell-data-flags data-flags 0.0.3 3
 haskell-data-hash data-hash 0.1.0.0 4
 haskell-data-inttrie data-inttrie 0.0.3 3
