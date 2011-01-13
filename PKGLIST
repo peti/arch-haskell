@@ -41,6 +41,7 @@ haskell-hxt hxt 9.0.1 2
 haskell-hxt-charproperties hxt-charproperties 9.0.0 3
 haskell-hxt-regex-xmlschema hxt-regex-xmlschema 9.0.0 3
 haskell-hxt-unicode hxt-unicode 9.0.0 3
+haskell-language-c language-c 0.3.2 3
 haskell-libxml-sax libxml-sax 0.6.1.1 3
 haskell-mtlparse mtlparse 0.1.1 3
 haskell-neither neither 0.1.0 4
