@@ -10,7 +10,7 @@ haskell-byteorder byteorder 1.0.3 2
 haskell-cairo cairo 0.12.0 3
 haskell-cereal cereal 0.3.0.0 3
 haskell-clientsession clientsession 0.4.1 2
-haskell-cmdargs cmdargs 0.6.5 3
+haskell-cmdargs cmdargs 0.6.6 1
 haskell-cmdlib cmdlib 0.2.1 4
 haskell-crypto-api crypto-api 0.2.1 2
 haskell-csv csv 0.1.2 4
