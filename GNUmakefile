@@ -20,8 +20,8 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 all::	$(PKGBUILDS) scripts/find-conflicts
 	@scripts/find-conflicts $(CABALFILES)
 
-world::	all scripts/toposort $(CHROOT)/root/.arch-chroot
-	nice -n 20 ./scripts/makeworld
+world::	all $(CHROOT)/root/.arch-chroot
+	nice -n 20 ./scripts/makeworld $(HABS)
 
 src::	$(TAURBALLS)
 
@@ -40,10 +40,6 @@ include dependencies.mk
 scripts/cabal2pkgbuild : scripts/cabal2pkgbuild.o Distribution/ArchLinux/PkgBuild.o
 scripts/cabal2pkgbuild : Distribution/ArchLinux/SystemProvides.o
 scripts/cabal2pkgbuild : Distribution/ArchLinux/CabalTranslation.o
-	@echo "[LINK] $@"
-	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
-
-scripts/toposort : scripts/toposort.o Distribution/ArchLinux/PkgBuild.o Distribution/ArchLinux/SrcRepo.o
 	@echo "[LINK] $@"
 	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
 
@@ -96,7 +92,7 @@ updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 clean::
 	@rm -v config.mk dependencies.mk
 	@rm -fv scripts/cabal2pkgbuild scripts/find-conflicts scripts/find-updates
-	@rm -fv scripts/recdeps scripts/reverse-dependencies scripts/toposort
+	@rm -fv scripts/recdeps scripts/reverse-dependencies
 	@find Distribution '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
 	@find scripts '(' -name '*.o' -o -name '*.hi' ')' -print0 | xargs -0 rm -fv
 	@rm -rf $(HABS) $(HACKAGE)

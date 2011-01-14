@@ -16,4 +16,3 @@
 /scripts/find-updates
 /scripts/find-conflicts
 /scripts/reverse-dependencies
-/scripts/toposort

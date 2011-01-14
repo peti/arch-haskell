@@ -2,20 +2,47 @@
 
 set -eu
 
-export LC_ALL=C
+declare -r chroot_basedir="/var/tmp"
+declare -r host_arch=$(uname -m)
+export LC_ALL="C"
 
-scripts/toposort habs | while read name
-do
-    source habs/$name/PKGBUILD
-    pkgspec=$pkgname-$pkgver-$pkgrel
-    if [ -f "/var/tmp/chroot-i686/copy/repo/$pkgspec-i686.pkg.tar.xz" ]
-    then
-        echo "Not building $name (already built)."
-        continue
-    else
-        echo "Begin building $name..."
-        scripts/build-package habs/$name i686
-        #scripts/build-package habs/$name x86_64
-    fi
+build-package()
+(
+  local pkgname="$1" pkgver="$2" pkgrel="$3" pkgarch="$4"
+  local pkgspec="$pkgname-$pkgver-$pkgrel"
+  local outname="$pkgspec-${pkgarch}.pkg.tar.xz"
+  local outpath="${chroot_basedir}/chroot-${pkgarch}/copy/repo/${outname}"
+
+  if [ -f "$outpath" ]; then
+    echo "Not building $outname (already built)."
+  else
+    echo "Building $outname ..."
+    cd "habs/$pkgname"
+    sudo setarch "${pkgarch}" makechrootpkg -u -d -r "${chroot_basedir}/chroot-${pkgarch}"
+  fi
+)
+
+pkglist()
+(
+  local habs="$1"
+  for name in "$habs"/*; do
+    source $name/PKGBUILD
+    echo "$pkgname non-existent-dummy-package"
+    for dep in ${depends[@]} ${makedepends[@]:-}; do
+      if [[ "$dep" =~ ([^=\<\>]+) ]]; then
+	dep="${BASH_REMATCH[1]}"
+	if [ -d "$habs/$dep" ]; then
+	  echo "$pkgname $dep"
+	fi
+      else
+	echo >&2 "error: can't parse dependencies of $name/PKGBUILD"
+	exit 1
+      fi
+    done
+  done | tsort | tac | sed -e "/^non-existent-dummy-package/d"
+)
+
+for name in $(pkglist "$1"); do
+  source "$1/$name/PKGBUILD"
+  build-package "$pkgname" "$pkgver" "$pkgrel" "$host_arch"
 done
-
