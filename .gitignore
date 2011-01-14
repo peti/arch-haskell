@@ -1,8 +1,5 @@
-# ignore the chroot builds
-/chroot-*/*
-
-# ignore habs sub-directory
-/habs/*
+# ignore generated files
+/habs/*/*.pkg.tar.xz
 
 # ignore hackage sub-directory
 /hackage/*
