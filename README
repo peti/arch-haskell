@@ -1,28 +1,17 @@
-# If you don't have a PKGLIST: check out habs and regenerate it
-git clone git://github.com/archhaskell/habs.git
-scripts/extract-pkglist > PKGLIST
+The Haskell ABS tree for ArchLinux
+==================================
 
-# Download the Hackage tarball
-wget http://hackage.haskell.org/packages/archive/00-index.tar.gz
-gunzip 00-index.tar.gz
+This project contains an ArchLinux ABS tree that's used to compile a binary
+repository of Haskell packages. If you'd like to use that repository, then
+append the following two lines at the end of your /etc/pacman.conf file:
 
-# find inconsistencies
-(cd scripts && ghc -o findconflicts findconflicts.hs -Wall -package archlinux -threaded)
-scripts/findconflicts PKGLIST 00-index.tar +RTS -N4
+  [haskell]
+  Server = http://andromeda.kiwilight.com/$repo/$arch
 
-# find updates
-(cd scripts && ghc -o findupdates findupdates.hs -Wall -package archlinux -threaded)
-scripts/findupdates PKGLIST 00-index.tar +RTS -N4
-
-# Create chroots for building
-scripts/setup-chroots
-
-# Create a new PKGBUILD tree
-# TODO: implement setting pkgrel from PKGLIST in manycabal2arch
-mkdir habs-new
-manycabal2arch PKGLIST 00-index.tar habs-new &>! manycabal2arch.log
-
-# Batch build it (use toposort from archlinux/tests)
-# Packages go to chroot-$arch/repo
-./makeworld
-
+If you'd like to build the repository on your own machine, then please make
+sure that the devtools package is installed, and then run the ./makeworld
+script that's included in this directory. The script will create a clean
+ArchLinx installation in a chroot environment at /var/tmp/chroot-${arch},
+where ${arch} is either 'i686' or 'x86_64', depending on your hardware. It
+is also possible to cross-compile the i686 repository on 64-bit machines by
+running the script as follows: 'setarch i686 ./makeworld'.

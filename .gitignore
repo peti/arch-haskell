@@ -1,5 +1,3 @@
-dist/
-*.hi
-*.o
-*~
-.*.swp
+# ignore generated files
+
+/habs/*/*.pkg.tar.xz
