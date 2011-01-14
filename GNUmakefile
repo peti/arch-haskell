@@ -21,7 +21,7 @@ all::	$(PKGBUILDS) scripts/find-conflicts
 	@scripts/find-conflicts $(CABALFILES)
 
 world::	all $(CHROOT)/root/.arch-chroot
-	nice -n 20 ./scripts/makeworld $(HABS)
+	nice -n 20 ./makeworld $(HABS)
 
 src::	$(TAURBALLS)
 
