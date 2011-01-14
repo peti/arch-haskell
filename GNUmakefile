@@ -4,7 +4,8 @@ PKGLIST         := PKGLIST
 HABS            := habs
 HACKAGE         := hackage
 HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
-CHROOT		:= /var/tmp/chroot-i686
+ARCH		:= $(shell uname -m)
+CHROOT		:= /var/tmp/chroot-$(ARCH)
 
 GHCFLAGS        := -Wall -O
 
@@ -20,7 +21,7 @@ config.mk : $(PKGLIST) scripts/pkglist2mk
 all::	$(PKGBUILDS) scripts/find-conflicts
 	@scripts/find-conflicts $(CABALFILES)
 
-world::	all $(CHROOT)/root/.arch-chroot
+world::	all
 	nice -n 20 ./makeworld $(HABS)
 
 src::	$(TAURBALLS)
@@ -28,10 +29,6 @@ src::	$(TAURBALLS)
 depend::
 	@ghc $(GHCFLAGS) -M scripts/*.hs
 	@mv Makefile dependencies.mk
-
-$(CHROOT)/root/.arch-chroot:
-	@echo "Please run scripts/setup-chroots to create the chroot environment."
-	@false
 
 dependencies.mk : depend
 
@@ -84,7 +81,7 @@ $(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
 publish::
 	@sudo ln -s -f repo.db $(CHROOT)/copy/repo/haskell.db
 	@sudo ln -s -f repo.db.tar.gz $(CHROOT)/copy/repo/haskell.db.tar.gz
-	rsync -vaH $(CHROOT)/copy/repo/ andromeda.kiwilight.com:i686/
+	rsync -vaH $(CHROOT)/copy/repo/ andromeda.kiwilight.com:$(ARCH)/
 
 updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 	@scripts/find-updates $(PKGLIST) $(HACKAGE)
