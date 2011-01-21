@@ -2,6 +2,7 @@
 
 /habs/*/*.pkg.tar.xz
 /habs/*/*.tar.gz
+/habs/*/src
 
 # ignore hackage sub-directory
 
