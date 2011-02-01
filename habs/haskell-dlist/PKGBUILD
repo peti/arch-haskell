@@ -1,17 +1,18 @@
 # Maintainer: Arch Haskell Team <arch-haskell@haskell.org>
-_hkgname=HXQ
-pkgname=haskell-hxq
-pkgver=0.18.2
-pkgrel=5
-pkgdesc="A Compiler from XQuery to Haskell"
+_hkgname=dlist
+pkgname=haskell-dlist
+pkgver=0.5
+pkgrel=4
+pkgdesc="Differences lists"
 url="http://hackage.haskell.org/package/${_hkgname}"
 license=('custom:BSD3')
 arch=('i686' 'x86_64')
 makedepends=()
-depends=('ghc' 'haskell-http=4000.0.9' 'haskell-array=0.3.0.1' 'haskell-haskeline' 'haskell-haskell98=1.0.1.1' 'haskell-mtl' 'haskell-regex-base=0.93.2' 'haskell-regex-compat=0.93.1' 'haskell-template-haskell=2.4.0.1')
+depends=('ghc')
 options=('strip')
 source=(http://hackage.haskell.org/packages/archive/${_hkgname}/${pkgver}/${_hkgname}-${pkgver}.tar.gz)
 install=${pkgname}.install
+md5sums=('54f6c18ff689b7ef54e3229dc4a94107')
 build() {
     cd ${srcdir}/${_hkgname}-${pkgver}
     runhaskell Setup configure -O --enable-split-objs --enable-shared \
@@ -32,4 +33,3 @@ package() {
     install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
     rm -f ${pkgdir}/usr/share/doc/${pkgname}/LICENSE
 }
-md5sums=('81b7b5e4fd872c37e0ed4847f703022f')
