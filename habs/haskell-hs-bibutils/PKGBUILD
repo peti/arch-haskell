@@ -1,18 +1,18 @@
 # Maintainer: Arch Haskell Team <arch-haskell@haskell.org>
-_hkgname=tagged
-pkgname=haskell-tagged
-pkgver=0.2
+_hkgname=hs-bibutils
+pkgname=haskell-hs-bibutils
+pkgver=4.12
 pkgrel=1
-pkgdesc="Provides newtype wrappers for phantom types to avoid unsafely passing dummy arguments"
+pkgdesc="Haskell bindings to bibutils, the bibliography conversion utilities."
 url="http://hackage.haskell.org/package/${_hkgname}"
-license=('custom:BSD3')
+license=('GPL')
 arch=('i686' 'x86_64')
 makedepends=()
-depends=('ghc' 'haskell-data-default<3')
+depends=('ghc' 'haskell-syb=0.1.0.2')
 options=('strip')
 source=(http://hackage.haskell.org/packages/archive/${_hkgname}/${pkgver}/${_hkgname}-${pkgver}.tar.gz)
 install=${pkgname}.install
-md5sums=('d0c1607d160909a2457197668112a851')
+md5sums=('4c4647b34246a4d35f1d1cfb10e6720a')
 build() {
     cd ${srcdir}/${_hkgname}-${pkgver}
     runhaskell Setup configure -O --enable-split-objs --enable-shared \
@@ -30,6 +30,4 @@ package() {
     install -d -m755 ${pkgdir}/usr/share/doc/ghc/html/libraries
     ln -s /usr/share/doc/${pkgname}/html ${pkgdir}/usr/share/doc/ghc/html/libraries/${_hkgname}
     runhaskell Setup copy --destdir=${pkgdir}
-    install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
-    rm -f ${pkgdir}/usr/share/doc/${pkgname}/LICENSE
 }
