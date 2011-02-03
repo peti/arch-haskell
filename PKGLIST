@@ -47,7 +47,7 @@ haskell-hostname hostname 1.0 1
 haskell-hs-bibutils hs-bibutils 4.12 1
 haskell-hsemail hsemail 1.7 3
 haskell-hsyslog hsyslog 1.4 3
-haskell-hxq HXQ 0.18.2 5
+haskell-hxq HXQ 0.18.2 4
 haskell-hxt hxt 9.0.1 2
 haskell-hxt-charproperties hxt-charproperties 9.0.0 3
 haskell-hxt-regex-xmlschema hxt-regex-xmlschema 9.0.0 3
