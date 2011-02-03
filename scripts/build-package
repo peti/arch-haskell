@@ -1,9 +1,0 @@
-#!/bin/bash
-
-BASE=`pwd`
-targetpkg=$1
-_arch=$2
-
-cd "$1"
-setarch ${_arch} makechrootpkg -u -d -r $BASE/chroot-${_arch}
-

@@ -1,16 +1,5 @@
 From: Peter Simons <simons@cryp.to>
-Subject: [PATCH] t/drop-warning-about-arbitrary-version-intervals
+Subject: [PATCH] An automated system for maintaining AUR and binary repositories
 
-The archlinux library issues warnings while converting Cabal files that
-specify lower and upper bounds for dependencies, like "foo > 1 && < 2",
-because those restrictions cannot be expressed in a PKGBUILD file.
-
-Now, what are those warnings good for?
-
-That kind of version restriction is exceedingly common in Cabal files. An
-attempt to convert all of Hackage results in hundreds of warnings, yet
-it's not clear what anyone is supposed to do about them. There is just no
-way to convert those specifications so that Pacman can process them.
-Basically, we ensure that those restrictions are fulfilled long before a
-PKGBUILD is ever created: i.e. by means of the PKGLIST, which specifies
-the exact set of package versions that ought to be converted to ArchLinux.
+This patch integrates the various individual components from archlinux,
+and archlinux-build into a coherent system.
