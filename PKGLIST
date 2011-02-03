@@ -55,6 +55,7 @@ haskell-hxt-unicode hxt-unicode 9.0.0 3
 haskell-json json 0.4.4 4
 haskell-language-c language-c 0.3.2.1 1
 haskell-language-haskell-extract language-haskell-extract 0.1.2 4
+haskell-lazysmallcheck lazysmallcheck 0.5 1
 haskell-libxml-sax libxml-sax 0.6.1.1 4
 haskell-monadcatchio-mtl MonadCatchIO-mtl 0.3.0.1 4
 haskell-mtlparse mtlparse 0.1.1 3
@@ -72,6 +73,7 @@ haskell-ranges ranges 0.2.3 1
 haskell-regexpr regexpr 0.5.3 4
 haskell-safe safe 0.3 3
 haskell-sifflet-lib sifflet-lib 1.2.2 6
+haskell-smallcheck smallcheck 0.4 1
 haskell-split split 0.1.3 2
 haskell-storable-endian storable-endian 0.2.4 1
 haskell-storable-record storable-record 0.0.2.3 3
