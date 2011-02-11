@@ -3,6 +3,7 @@ bnfc BNFC 2.4.2.0 3
 c2hs c2hs 0.16.2 3
 cabal2arch cabal2arch 0.7.7 2
 cpphs cpphs 1.11 3
+ghc-mod ghc-mod 0.5.3 1
 haskell-aes AES 0.2.7 1
 haskell-agda Agda 2.2.8 1
 haskell-ansi-terminal ansi-terminal 0.5.5 4
