@@ -7,7 +7,7 @@ HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
 ARCH		:= $(shell uname -m)
 CHROOT		:= /var/tmp/chroot-$(ARCH)
 
-GHCFLAGS        := -Wall -O
+GHCFLAGS        := -Wall -O -i.
 
 .PHONY: all world updates src publish clean depend
 all::
