@@ -81,7 +81,7 @@ $(HACKAGE)/.extraction-datestamp : $(HACKAGE_TARBALL)
 publish::
 	@sudo ln -s -f repo.db $(CHROOT)/copy/repo/haskell.db
 	@sudo ln -s -f repo.db.tar.gz $(CHROOT)/copy/repo/haskell.db.tar.gz
-	rsync -vaH --del $(CHROOT)/copy/repo/ andromeda.kiwilight.com:$(ARCH)/
+	rsync -vaHP $(CHROOT)/copy/repo/ andromeda.kiwilight.com:/srv/haskell/$(ARCH)/
 
 updates::	$(HACKAGE)/.extraction-datestamp scripts/find-updates
 	@scripts/find-updates $(PKGLIST) $(HACKAGE)
