@@ -1,0 +1,10 @@
+#! /bin/bash
+
+set -eu
+
+for n in "$@"; do
+  (
+    source "$n/PKGBUILD"
+    sed -i -e "s|^pkgrel=${pkgrel}$|pkgrel=$((${pkgrel}+1))|" "$n/PKGBUILD"
+  )
+done
