@@ -36,6 +36,7 @@ ${cabalfile} : ${hackagefile}
 
 PKGBUILDS += ${pkgbuildfile}
 ${pkgbuildfile} : ${cabalfile} scripts/cabal2pkgbuild
+${pkgbuildfile} : data/ghc-provides.txt data/library-providers.txt data/platform-provides.txt
 	@echo 'cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}'
 	@cd ${pkgbuilddir} && ../../scripts/cabal2pkgbuild $cabalname-$pkgver-$pkgrel.cabal ${archname} ${pkgrel}
 	@sed -r -i -e "s|^md5sums=.*\$\$|\$\$(cd ${pkgbuilddir} && makepkg 2>/dev/null -mg)|" ${pkgbuildfile}
