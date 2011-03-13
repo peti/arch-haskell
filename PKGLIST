@@ -1,7 +1,7 @@
 # agda-executable Agda-executable 2.2.10 1
 bnfc BNFC 2.4.2.0 4
 c2hs c2hs 0.16.2 4
-cabal2arch cabal2arch 0.7.7 4
+cabal2arch cabal2arch 0.8.0 1
 cpphs cpphs 1.11 4
 derive derive 2.4.2 3
 ghc-mod ghc-mod 0.5.3 3
