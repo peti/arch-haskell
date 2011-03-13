@@ -164,7 +164,7 @@ haskell-vty vty 4.6.0.4 1
 haskell-wai wai 0.3.2 1
 haskell-wai-app-static wai-app-static 0.0.1.1 3
 haskell-wai-extra wai-extra 0.3.3 1
-haskell-wai-handler-devel wai-handler-devel 0.2.0.1 5
+# haskell-wai-handler-devel wai-handler-devel 0.2.0.1 5
 # haskell-warp warp 0.3.2.3 1
 haskell-web-routes web-routes 0.23.4 2
 haskell-web-routes-quasi web-routes-quasi 0.6.3.1 2
