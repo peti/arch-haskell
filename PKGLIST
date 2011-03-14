@@ -10,6 +10,7 @@ haskell-aes AES 0.2.7 2
 haskell-ascii ascii 0.0.2 1
 haskell-case-insensitive case-insensitive 0.2 1
 haskell-base-unicode-symbols base-unicode-symbols 0.2.1.1 1
+haskell-http-types http-types 0.5.1 1
 haskell-ansi-terminal ansi-terminal 0.5.5 5
 haskell-ansi-wl-pprint ansi-wl-pprint 0.6.3 4
 haskell-archlinux archlinux 0.3.6 2
