@@ -161,6 +161,7 @@ haskell-unix-compat unix-compat 0.2.1.1 2
 haskell-unixutils Unixutils 1.36 2
 haskell-utf8-light utf8-light 0.4 2
 haskell-utility-ht utility-ht 0.0.5.1 4
+haskell-monad-control monad-control 0.2 1
 haskell-uulib uulib 0.9.13 4
 haskell-vector vector 0.7.0.1 2
 haskell-vector-space vector-space 0.7.2 2
