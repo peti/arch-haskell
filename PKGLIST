@@ -95,6 +95,7 @@ haskell-hsh HSH 2.0.3 2
 haskell-hsx hsx 0.9.0 3
 haskell-hsyslog hsyslog 1.4 4
 haskell-http-enumerator http-enumerator 0.4.0 2
+haskell-zlib-enum zlib-enum 0.1 1
 # haskell-hxq HXQ 0.18.2 5
 haskell-hxt hxt 9.1.1 1
 haskell-hxt-charproperties hxt-charproperties 9.1.0 1
