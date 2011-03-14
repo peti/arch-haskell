@@ -119,7 +119,7 @@ haskell-neither neither 0.2.0 2
 haskell-network-enumerator network-enumerator 0.1.1 3
 haskell-network-fancy network-fancy 0.1.5 4
 haskell-non-negative non-negative 0.1 4
-haskell-numeric-prelude numeric-prelude 0.2 5
+# haskell-numeric-prelude numeric-prelude 0.2 5
 haskell-pandoc pandoc 1.8.1.1 2
 haskell-pandoc-types pandoc-types 1.8 2
 haskell-pango pango 0.12.0 5
