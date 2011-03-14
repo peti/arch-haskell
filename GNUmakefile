@@ -1,7 +1,7 @@
 # GNUmakefile -- an incremental build of the arch-haskell repository
 
 PKGLIST         := PKGLIST
-HABS            := habs
+HABS            := habs/habs
 HACKAGE         := hackage
 HACKAGE_TARBALL := ~/.cabal/packages/hackage.haskell.org/00-index.tar
 ARCH		:= $(shell uname -m)
@@ -22,7 +22,7 @@ all::	$(PKGBUILDS) scripts/find-conflicts
 	@scripts/find-conflicts $(CABALFILES)
 
 world::	all
-	nice -n 20 ./makeworld $(HABS)
+	nice -n 20 $(HABS)/../makeworld $(HABS)
 
 src::	$(TAURBALLS)
 
