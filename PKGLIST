@@ -56,7 +56,7 @@ haskell-data-default data-default 0.2.0.1 2
 haskell-data-object data-object 0.3.1.6 2
 haskell-data-object-json data-object-json 0.3.1.5 3
 haskell-data-object-yaml data-object-yaml 0.3.3.4 3
-haskell-datetime datetime 0.2 4
+# haskell-datetime datetime 0.2 4
 # haskell-dbus-core dbus-core 0.8.5.4 5
 haskell-diff Diff 0.1.2 2
 haskell-digest digest 0.0.0.9 3
