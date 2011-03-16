@@ -1,4 +1,3 @@
-# agda-executable Agda-executable 2.2.10 1
 bnfc BNFC 2.4.2.0 4
 c2hs c2hs 0.16.2 4
 cabal2arch cabal2arch 0.8.0 1
@@ -6,21 +5,17 @@ cpphs cpphs 1.11 4
 derive derive 2.4.2 3
 ghc-mod ghc-mod 0.5.3 3
 haskell-aes AES 0.2.7 2
-# haskell-agda Agda 2.2.10 1
-haskell-ascii ascii 0.0.2 1
-haskell-case-insensitive case-insensitive 0.2 1
-haskell-base-unicode-symbols base-unicode-symbols 0.2.1.1 1
-haskell-http-types http-types 0.5.1 1
 haskell-ansi-terminal ansi-terminal 0.5.5 5
 haskell-ansi-wl-pprint ansi-wl-pprint 0.6.3 4
 haskell-archlinux archlinux 0.3.6 2
+haskell-ascii ascii 0.0.2 1
 haskell-asn1-data asn1-data 0.4.6 2
 haskell-attempt attempt 0.3.0 2
 haskell-attojson AttoJson 0.5.10 2
 haskell-attoparsec attoparsec 0.8.5.0 1
 haskell-attoparsec-enumerator attoparsec-enumerator 0.2.0.3 3
 haskell-attoparsec-text attoparsec-text 0.8.2.1 2
-# haskell-authenticate authenticate 0.8.2.2 1
+haskell-base-unicode-symbols base-unicode-symbols 0.2.1.1 1
 haskell-base64-bytestring base64-bytestring 0.1.0.2 2
 haskell-blaze-builder blaze-builder 0.2.1.4 3
 haskell-blaze-builder-enumerator blaze-builder-enumerator 0.2.0.1 3
@@ -32,10 +27,11 @@ haskell-bytestring-nums bytestring-nums 0.3.2 2
 haskell-bytestring-show bytestring-show 0.3.4 2
 haskell-bytestring-trie bytestring-trie 0.2.3 2
 haskell-cairo cairo 0.12.0 4
+haskell-case-insensitive case-insensitive 0.2 1
 haskell-cautious-file cautious-file 0.1.5 2
 haskell-cereal cereal 0.3.0.0 4
 haskell-certificate certificate 0.7.0 2
-haskell-chart Chart 0.14 2
+haskell-chart Chart 0.14 3
 haskell-citeproc-hs citeproc-hs 0.3.2 2
 haskell-clientsession clientsession 0.4.1 3
 haskell-cmdargs cmdargs 0.6.8 2
@@ -50,14 +46,12 @@ haskell-cryptohash cryptohash 0.6.3 2
 haskell-csv csv 0.1.2 5
 haskell-data-accessor data-accessor 0.2.1.7 1
 haskell-data-accessor-monads-fd data-accessor-monads-fd 0.2.0.3 1
-haskell-data-accessor-template data-accessor-template 0.2.1.7 1
+haskell-data-accessor-template data-accessor-template 0.2.1.7 2
 haskell-data-binary-ieee754 data-binary-ieee754 0.4.2.1 4
 haskell-data-default data-default 0.2.0.1 2
 haskell-data-object data-object 0.3.1.6 2
 haskell-data-object-json data-object-json 0.3.1.5 3
 haskell-data-object-yaml data-object-yaml 0.3.3.4 3
-# haskell-datetime datetime 0.2 4
-# haskell-dbus-core dbus-core 0.8.5.4 5
 haskell-diff Diff 0.1.2 2
 haskell-digest digest 0.0.0.9 3
 haskell-dlist dlist 0.5 5
@@ -95,8 +89,7 @@ haskell-hsh HSH 2.0.3 2
 haskell-hsx hsx 0.9.0 3
 haskell-hsyslog hsyslog 1.4 4
 haskell-http-enumerator http-enumerator 0.4.0 2
-haskell-zlib-enum zlib-enum 0.1 1
-# haskell-hxq HXQ 0.18.2 5
+haskell-http-types http-types 0.5.1 1
 haskell-hxt hxt 9.1.1 1
 haskell-hxt-charproperties hxt-charproperties 9.1.0 1
 haskell-hxt-regex-xmlschema hxt-regex-xmlschema 9.0.0 4
@@ -110,20 +103,19 @@ haskell-language-c language-c 0.3.2.1 2
 haskell-language-haskell-extract language-haskell-extract 0.1.2 6
 haskell-language-javascript language-javascript 0.4.2 2
 haskell-lazysmallcheck lazysmallcheck 0.5 2
-# haskell-libxml-sax libxml-sax 0.6.1.1 8
 haskell-memotrie MemoTrie 0.4.9 2
 haskell-mime-mail mime-mail 0.1.0.1 2
 haskell-missingh MissingH 1.1.0.3 2
+haskell-monad-control monad-control 0.2 1
 haskell-monad-peel monad-peel 0.1 2
 haskell-monadcatchio-mtl MonadCatchIO-mtl 0.3.0.2 2
 haskell-monads-fd monads-fd 0.2.0.0 1
 haskell-monads-tf monads-tf 0.1.0.0 2
 haskell-mtlparse mtlparse 0.1.1 4
 haskell-neither neither 0.2.0 2
-# haskell-network-bytestring network-bytestring 0.1.3.4 2
 haskell-network-enumerator network-enumerator 0.1.1 3
 haskell-network-fancy network-fancy 0.1.5 4
-haskell-non-negative non-negative 0.1 4
+haskell-non-negative non-negative 0.1 5
 haskell-numeric-prelude numeric-prelude 0.2.1 1
 haskell-pandoc pandoc 1.8.1.1 2
 haskell-pandoc-types pandoc-types 1.8 2
@@ -141,14 +133,14 @@ haskell-rosezipper rosezipper 0.2 1
 haskell-safe safe 0.3 4
 haskell-sendfile sendfile 0.7.3 1
 haskell-sha SHA 1.4.1.3 2
-# haskell-sifflet-lib sifflet-lib 1.2.3 2
 haskell-smallcheck smallcheck 0.4 2
 haskell-split split 0.1.3 3
 haskell-storable-endian storable-endian 0.2.4 2
-haskell-storable-record storable-record 0.0.2.3 4
+haskell-storable-record storable-record 0.0.2.3 5
 haskell-stream-fusion stream-fusion 0.1.2.2 5
 haskell-streamproc streamproc 1.3 4
 haskell-strptime strptime 1.0.1 2
+haskell-tabular tabular 0.2.2.2 1
 haskell-tagged tagged 0.2 2
 haskell-tagsoup tagsoup 0.12 3
 haskell-test-framework test-framework 0.3.3 5
@@ -162,7 +154,6 @@ haskell-unix-compat unix-compat 0.2.1.1 2
 haskell-unixutils Unixutils 1.36 2
 haskell-utf8-light utf8-light 0.4 2
 haskell-utility-ht utility-ht 0.0.6 1
-haskell-monad-control monad-control 0.2 1
 haskell-uulib uulib 0.9.13 4
 haskell-vector vector 0.7.0.1 2
 haskell-vector-space vector-space 0.7.2 2
@@ -170,8 +161,6 @@ haskell-vty vty 4.6.0.4 1
 haskell-wai wai 0.3.2 1
 haskell-wai-app-static wai-app-static 0.0.1.1 3
 haskell-wai-extra wai-extra 0.3.3 1
-# haskell-wai-handler-devel wai-handler-devel 0.2.0.1 5
-# haskell-warp warp 0.3.2.3 1
 haskell-web-routes web-routes 0.23.4 2
 haskell-web-routes-quasi web-routes-quasi 0.6.3.1 2
 haskell-xdg-basedir xdg-basedir 0.2 2
@@ -179,22 +168,14 @@ haskell-xml xml 1.3.7 4
 haskell-xml-types xml-types 0.2 1
 haskell-xss-sanitize xss-sanitize 0.2.6 1
 haskell-yaml yaml 0.4.1 3
-# haskell-yesod yesod 0.7.1 4
-# haskell-yesod-auth yesod-auth 0.3.1 1
-# haskell-yesod-core yesod-core 0.7.0.1 3
-# haskell-yesod-form yesod-form 0.0.0.2 2
-# haskell-yesod-json yesod-json 0.0.0.1 5
-# haskell-yesod-persistent yesod-persistent 0.0.0.1 2
-# haskell-yesod-static yesod-static 0.0.0.1 2
 haskell-zip-archive zip-archive 0.1.1.7 2
 haskell-zlib-bindings zlib-bindings 0.0.0 4
+haskell-zlib-enum zlib-enum 0.1 1
 hasktags hasktags 0.68.1 4
 hledger hledger 0.13 1
 hscolour hscolour 1.17 4
 json-tools json-tools 0.3.1 3
 nptools nptools 0.4.1 2
 pxsl-tools pxsl-tools 1.0.1 4
-# sifflet sifflet 1.2.3 2
-splot splot 0.1.11 2
-timeplot timeplot 0.2.19 1
-# yi yi 0.6.2.4 4
+splot splot 0.1.11 3
+timeplot timeplot 0.2.19 2
