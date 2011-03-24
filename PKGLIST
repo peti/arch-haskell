@@ -73,7 +73,7 @@ haskell-gio gio 0.12.0 4
 haskell-glib glib 0.12.0 4
 haskell-gtk gtk 0.12.0 4
 haskell-halipeto halipeto 2.3 12
-haskell-hamlet hamlet 0.7.2.1 1
+haskell-hamlet hamlet 0.7.3 1
 haskell-haskell-src-exts haskell-src-exts 1.10.2 2
 haskell-haxml HaXml 1.20.2 5
 haskell-hint hint 0.3.3.2 2
@@ -124,6 +124,7 @@ haskell-numeric-prelude numeric-prelude 0.2.1 1
 haskell-pandoc pandoc 1.8.1.1 2
 haskell-pandoc-types pandoc-types 1.8 2
 haskell-pango pango 0.12.0 5
+haskell-pcre-light pcre-light 0.4 1
 haskell-persistent persistent 0.4.2 1
 haskell-pointedlist pointedlist 0.4.0.2 1
 haskell-polyparse polyparse 1.5 2
@@ -137,7 +138,7 @@ haskell-rosezipper rosezipper 0.2 1
 haskell-safe safe 0.3 4
 haskell-sendfile sendfile 0.7.3 1
 haskell-sha SHA 1.4.1.3 2
-haskell-sifflet-lib             sifflet-lib             1.2.4           1
+haskell-sifflet-lib sifflet-lib 1.2.4 1
 haskell-smallcheck smallcheck 0.4 2
 haskell-split split 0.1.3 3
 haskell-storable-endian storable-endian 0.2.4 2
@@ -183,7 +184,7 @@ hscolour hscolour 1.17 4
 json-tools json-tools 0.3.1 4
 nptools nptools 0.4.1 2
 pxsl-tools pxsl-tools 1.0.1 4
-sifflet                         sifflet                 1.2.4           1
+sifflet sifflet 1.2.4 1
 splot splot 0.1.12 1
-timeplot timeplot 0.2.20 1
+timeplot timeplot 0.2.21 1
 umm UMM 0.3.1 1
