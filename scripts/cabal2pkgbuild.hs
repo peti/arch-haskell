@@ -2,7 +2,7 @@ module Main ( main ) where
 
 import System.Environment ( getArgs )
 import Distribution.PackageDescription.Parse ( readPackageDescription )
-import Distribution.Verbosity ( normal )
+import Distribution.Verbosity ( silent )
 import Distribution.Text ( display )
 import Distribution.ArchLinux.CabalTranslation ( preprocessCabal, cabal2pkg', install_hook_name )
 import Distribution.ArchLinux.SystemProvides ( parseSystemProvides )
@@ -12,7 +12,7 @@ main :: IO ()
 main = do
   cabalFile:archname:release:[] <- getArgs
   let
-  cabalSrc <- readPackageDescription normal cabalFile
+  cabalSrc <- readPackageDescription silent cabalFile
   fc <- readFile "../../../data/ghc-provides.txt"
   fp <- readFile "../../../data/platform-provides.txt"
   ft <- readFile "../../../data/library-providers.txt"
