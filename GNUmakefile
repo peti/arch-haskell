@@ -22,7 +22,7 @@ all::	$(PKGBUILDS) scripts/find-conflicts
 	@scripts/find-conflicts $(CABALFILES)
 
 world::	all
-	nice -n 20 $(HABS)/../makeworld $(HABS)
+	nice -n 20 ionice -c 3 $(HABS)/../makeworld $(HABS)
 
 src::	$(TAURBALLS)
 
