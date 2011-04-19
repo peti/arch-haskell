@@ -44,7 +44,7 @@ scripts/find-conflicts : scripts/find-conflicts.o Distribution/ArchLinux/Hackage
 scripts/find-conflicts : Distribution/ArchLinux/SystemProvides.o Distribution/ArchLinux/CabalTranslation.o
 scripts/find-conflicts : Distribution/ArchLinux/PkgBuild.o
 	@echo "[LINK] $@"
-	@ghc $(GHCFLAGS) -package pretty -package Cabal -package tar -package bytestring -o $@ $^
+	@ghc $(GHCFLAGS) -package pretty -package Cabal -o $@ $^
 
 scripts/find-updates : scripts/find-updates.o
 	@echo "[LINK] $@"
