@@ -1,5 +1,0 @@
-From: Peter Simons <simons@cryp.to>
-Subject: [PATCH] An automated system for maintaining AUR and binary repositories
-
-This patch integrates the various individual components from archlinux,
-and archlinux-build into a coherent system.
