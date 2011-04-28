@@ -2,7 +2,7 @@
 bnfc BNFC 2.4.2.0 4
 c2hs c2hs 0.16.3 1
 cabal-sort cabal-sort 0.0.2.1 1
-cabal2arch cabal2arch 0.8.0 3
+cabal2arch cabal2arch 1.0 1
 cpphs cpphs 1.11 4
 derive derive 2.4.2 3
 ghc-mod ghc-mod 0.5.5 1
@@ -11,7 +11,7 @@ haskell-aeson aeson 0.3.2.4 1
 # haskell-agda Agda 2.2.10 1
 haskell-ansi-terminal ansi-terminal 0.5.5 5
 haskell-ansi-wl-pprint ansi-wl-pprint 0.6.3 4
-haskell-archlinux archlinux 0.3.6 2
+haskell-archlinux archlinux 1.1 1
 haskell-ascii ascii 0.0.2.1 2
 haskell-asn1-data asn1-data 0.4.6 6
 haskell-attempt attempt 0.3.0 2
@@ -86,7 +86,7 @@ haskell-hint hint 0.3.3.2 2
 haskell-hjavascript HJavaScript 0.4.7 2
 haskell-hjscript HJScript 0.5.0 3
 haskell-hjsmin hjsmin 0.0.14 3
-haskell-hledger-lib hledger-lib 0.13 2
+haskell-hledger-lib hledger-lib 0.14 1
 haskell-hlint hlint 1.8.8 1
 haskell-hlist HList 0.2.3 4
 haskell-hopenssl hopenssl 1.6.1 1
@@ -200,7 +200,7 @@ haskell-zip-archive zip-archive 0.1.1.7 2
 haskell-zlib-bindings zlib-bindings 0.0.0 5
 haskell-zlib-enum zlib-enum 0.2.1 2
 hasktags hasktags 0.68.1 4
-hledger hledger 0.13 2
+hledger hledger 0.14 1
 hscolour hscolour 1.17 4
 json-tools json-tools 0.3.1 7
 nptools nptools 0.4.1 5
