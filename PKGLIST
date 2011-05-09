@@ -2,7 +2,7 @@
 bnfc BNFC 2.4.2.0 4
 c2hs c2hs 0.16.3 1
 cabal-sort cabal-sort 0.0.2.1 2
-cabal2arch cabal2arch 1.1 1
+cabal2arch cabal2arch 1.1 2
 cpphs cpphs 1.11 4
 derive derive 2.5.1 1
 ghc-mod ghc-mod 0.5.5 1
@@ -11,7 +11,7 @@ haskell-aeson aeson 0.3.2.5 1
 # haskell-agda Agda 2.2.10 1
 haskell-ansi-terminal ansi-terminal 0.5.5 5
 haskell-ansi-wl-pprint ansi-wl-pprint 0.6.3 4
-haskell-archlinux archlinux 1.1 1
+haskell-archlinux archlinux 1.2 1
 haskell-ascii ascii 0.0.2.1 2
 haskell-asn1-data asn1-data 0.4.6 7
 haskell-attempt attempt 0.3.0 2
