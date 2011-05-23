@@ -26,6 +26,7 @@ haskell-blaze-builder blaze-builder 0.3.0.0 1
 haskell-blaze-builder-enumerator blaze-builder-enumerator 0.2.0.2 2
 haskell-blaze-html blaze-html 0.4.1.1 1
 haskell-blaze-textual blaze-textual 0.1.0.0 1
+haskell-bmp bmp 1.1.2.1 1
 haskell-boolean Boolean 0.0.1 2
 haskell-byteorder byteorder 1.0.3 3
 haskell-bytestring-lexing bytestring-lexing 0.2.1 2
@@ -133,6 +134,7 @@ haskell-neither neither 0.2.0 2
 haskell-network-enumerator network-enumerator 0.1.2 3
 haskell-network-fancy network-fancy 0.1.5 4
 haskell-non-negative non-negative 0.1 6
+haskell-numbersieves NumberSieves 0.1.1 4
 haskell-numeric-prelude numeric-prelude 0.2.1 3
 haskell-pandoc pandoc 1.8.1.1 3
 haskell-pandoc-types pandoc-types 1.8 2
