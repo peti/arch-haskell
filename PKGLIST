@@ -24,7 +24,7 @@ haskell-base64-bytestring base64-bytestring 0.1.0.2 2
 haskell-binary-shared binary-shared 0.8.1 4
 haskell-blaze-builder blaze-builder 0.3.0.1 1
 haskell-blaze-builder-enumerator blaze-builder-enumerator 0.2.0.2 3
-haskell-blaze-html blaze-html 0.4.1.2 1
+haskell-blaze-html blaze-html 0.4.1.3 1
 haskell-blaze-textual blaze-textual 0.1.0.0 2
 haskell-bmp bmp 1.1.2.1 1
 haskell-boolean Boolean 0.0.1 2
@@ -73,7 +73,7 @@ haskell-exif exif 3000.0.0 1
 haskell-explicit-exception explicit-exception 0.1.6 1
 haskell-failure failure 0.1.0.1 3
 haskell-fclabels fclabels 0.11.1.1 2
-haskell-file-embed file-embed 0.0.4 1
+haskell-file-embed file-embed 0.0.4.1 1
 haskell-fingertree fingertree 0.0.1.0 2
 haskell-funcmp funcmp 1.5 5
 haskell-gconf gconf 0.12.0 2
@@ -93,7 +93,7 @@ haskell-hjavascript HJavaScript 0.4.7 2
 haskell-hjscript HJScript 0.5.0 4
 haskell-hjsmin hjsmin 0.0.14 4
 haskell-hledger-lib hledger-lib 0.14 1
-haskell-hlint hlint 1.8.9 1
+haskell-hlint hlint 1.8.10 1
 haskell-hlist HList 0.2.3 4
 haskell-hopenssl hopenssl 1.6.1 1
 haskell-hostname hostname 1.0 2
@@ -103,8 +103,8 @@ haskell-hsh HSH 2.0.3 2
 haskell-hssyck HsSyck 0.50 1
 haskell-hsx hsx 0.9.1 1
 haskell-hsyslog hsyslog 1.4 4
-haskell-http-enumerator http-enumerator 0.6.5.1 1
-haskell-http-types http-types 0.6.4 2
+haskell-http-enumerator http-enumerator 0.6.5.3 1
+haskell-http-types http-types 0.6.5 1
 haskell-hxq HXQ 0.19.0 1
 haskell-hxt hxt 9.1.2 1
 haskell-hxt-charproperties hxt-charproperties 9.1.0 1
@@ -125,7 +125,7 @@ haskell-mime-mail mime-mail 0.3.0 3
 haskell-missingh MissingH 1.1.0.3 2
 haskell-monad-control monad-control 0.2.0.1 3
 haskell-monad-peel monad-peel 0.1 2
-haskell-monadcatchio-mtl MonadCatchIO-mtl 0.3.0.2 2
+haskell-monadcatchio-mtl MonadCatchIO-mtl 0.3.0.3 1
 haskell-monadlib monadLib 3.6.2 1
 haskell-monads-fd monads-fd 0.2.0.0 1
 haskell-monads-tf monads-tf 0.1.0.0 2
@@ -171,7 +171,7 @@ haskell-strptime strptime 1.0.1 2
 haskell-syb-with-class syb-with-class 0.6.1.1 1
 haskell-tabular tabular 0.2.2.3 1
 haskell-tagged tagged 0.2.2 1
-haskell-tagsoup tagsoup 0.12.1 1
+haskell-tagsoup tagsoup 0.12.2 1
 haskell-tdoc tdoc 0.4.0 1
 haskell-test-framework test-framework 0.4.0 1
 haskell-test-framework-hunit test-framework-hunit 0.2.6 7
@@ -200,7 +200,7 @@ haskell-web-routes web-routes 0.24.1 1
 haskell-web-routes-quasi web-routes-quasi 0.7.0.1 1
 haskell-xdg-basedir xdg-basedir 0.2 2
 haskell-xml xml 1.3.8 1
-haskell-xml-enumerator xml-enumerator 0.3.1 2
+haskell-xml-enumerator xml-enumerator 0.3.2 1
 haskell-xml-types xml-types 0.3 1
 haskell-xss-sanitize xss-sanitize 0.2.6 2
 haskell-yaml yaml 0.4.1 6
