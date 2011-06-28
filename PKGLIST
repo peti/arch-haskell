@@ -19,7 +19,7 @@ haskell-attoparsec attoparsec 0.8.6.1 2
 haskell-attoparsec-enumerator attoparsec-enumerator 0.2.0.4 2
 haskell-attoparsec-text attoparsec-text 0.8.5.1 2
 haskell-attoparsec-text-enumerator attoparsec-text-enumerator 0.2.0.0 4
-haskell-authenticate authenticate 0.9.1.3 4
+haskell-authenticate authenticate 0.9.1.3 5
 haskell-base-unicode-symbols base-unicode-symbols 0.2.1.5 2
 haskell-base64-bytestring base64-bytestring 0.1.0.2 3
 haskell-binary-shared binary-shared 0.8.1 5
@@ -46,6 +46,7 @@ haskell-clientsession clientsession 0.6.0 2
 haskell-cmdargs cmdargs 0.7 2
 haskell-cmdlib cmdlib 0.3 4
 haskell-colour colour 2.3.1 3
+haskell-compact-string-fix compact-string-fix 0.3.1 4
 haskell-control-monad-attempt control-monad-attempt 0.3.0 3
 haskell-convertible-text convertible-text 0.3.0.9 3
 haskell-cookie cookie 0.2.1 4
@@ -111,7 +112,7 @@ haskell-hsh HSH 2.0.3 3
 haskell-hssyck HsSyck 0.50 2
 haskell-hsx hsx 0.9.1 2
 haskell-hsyslog hsyslog 1.4 5
-haskell-http-enumerator http-enumerator 0.6.5.4 2
+haskell-http-enumerator http-enumerator 0.6.5.3 6
 haskell-http-types http-types 0.6.5 2
 haskell-hxq HXQ 0.19.0 2
 haskell-hxt hxt 9.1.2 2
@@ -128,6 +129,7 @@ haskell-language-haskell-extract language-haskell-extract 0.2.0 3
 haskell-language-javascript language-javascript 0.4.4 3
 haskell-largeword largeword 1.0.0 2
 haskell-lazysmallcheck lazysmallcheck 0.5 3
+haskell-maybet MaybeT 0.1.2 7
 haskell-memotrie MemoTrie 0.4.10 2
 haskell-mime-mail mime-mail 0.3.0 4
 haskell-missingh MissingH 1.1.0.3 3
@@ -169,6 +171,7 @@ haskell-semigroups semigroups 0.5.0 2
 haskell-sendfile sendfile 0.7.3 3
 haskell-sha SHA 1.4.1.3 2
 haskell-sifflet-lib sifflet-lib 1.2.4 3
+haskell-simple-sendfile simple-sendfile 0.1.1 1
 haskell-smallcheck smallcheck 0.4 3
 haskell-split split 0.1.4 2
 haskell-stm-io-hooks stm-io-hooks 0.7.3 2
@@ -179,6 +182,7 @@ haskell-streamproc streamproc 1.3 5
 haskell-strict strict 0.3.2 6
 haskell-strptime strptime 1.0.1 3
 haskell-syb-with-class syb-with-class 0.6.1.1 2
+haskell-syb-with-class-instances-text syb-with-class-instances-text 0.0.1 4
 haskell-tabular tabular 0.2.2.3 2
 haskell-tagged tagged 0.2.2 2
 haskell-tagsoup tagsoup 0.12.2 2
@@ -189,8 +193,8 @@ haskell-test-framework-quickcheck2 test-framework-quickcheck2 0.2.10 2
 haskell-test-framework-th test-framework-th 0.2.1 3
 haskell-testpack testpack 2.1.0 2
 haskell-texmath texmath 0.5.0.1 4
-haskell-tls tls 0.7.1 2
-haskell-tls-extra tls-extra 0.3.1 2
+haskell-tls tls 0.6.4 5
+haskell-tls-extra tls-extra 0.2.3 6
 haskell-uniplate uniplate 1.6 5
 haskell-unix-compat unix-compat 0.2.1.3 2
 haskell-unixutils Unixutils 1.36 3
@@ -214,8 +218,8 @@ haskell-xml-enumerator xml-enumerator 0.3.3 2
 haskell-xml-types xml-types 0.3 2
 haskell-xss-sanitize xss-sanitize 0.2.6 4
 haskell-yaml yaml 0.4.1 7
-haskell-yesod yesod 0.8.2.1 4
-haskell-yesod-auth yesod-auth 0.4.0.2 4
+haskell-yesod yesod 0.8.2.1 5
+haskell-yesod-auth yesod-auth 0.4.0.2 5
 haskell-yesod-core yesod-core 0.8.2 3
 haskell-yesod-form yesod-form 0.1.0.1 9
 haskell-yesod-json yesod-json 0.1.1 9
