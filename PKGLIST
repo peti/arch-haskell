@@ -48,6 +48,7 @@ haskell-cmdargs cmdargs 0.7 2
 haskell-cmdlib cmdlib 0.3 4
 haskell-colour colour 2.3.1 3
 haskell-compact-string-fix compact-string-fix 0.3.1 4
+haskell-configfile ConfigFile 1.0.6 4
 haskell-control-monad-attempt control-monad-attempt 0.3.0 3
 haskell-convertible-text convertible-text 0.3.0.9 3
 haskell-cookie cookie 0.2.1 4
@@ -84,6 +85,7 @@ haskell-funcmp funcmp 1.5 6
 haskell-gconf gconf 0.12.0 3
 haskell-ghc-mtl ghc-mtl 1.0.1.0 8
 haskell-gio gio 0.12.0 5
+haskell-glade glade 0.12.0 1
 haskell-glib glib 0.12.0 5
 haskell-gnuidn gnuidn 0.2 1
 haskell-gnutls gnutls 0.1 1
@@ -145,11 +147,12 @@ haskell-monadcatchio-mtl MonadCatchIO-mtl 0.3.0.3 2
 haskell-monadlib monadLib 3.6.2 2
 haskell-monads-fd monads-fd 0.2.0.0 2
 haskell-monads-tf monads-tf 0.1.0.0 3
-haskell-mongodb mongoDB 0.9.5 2
+haskell-mongodb mongoDB 0.10.0 1
 haskell-mtlparse mtlparse 0.1.1 5
 haskell-neither neither 0.2.0 3
 haskell-network-enumerator network-enumerator 0.1.2 4
 haskell-network-fancy network-fancy 0.1.5 5
+haskell-network-protocol-xmpp network-protocol-xmpp 0.4 1
 haskell-non-negative non-negative 0.1 7
 haskell-numbersieves NumberSieves 0.1.1 5
 haskell-numeric-prelude numeric-prelude 0.2.1 4
@@ -240,6 +243,8 @@ haskell-zlib-enum zlib-enum 0.2.1 4
 hasktags hasktags 0.68.1 5
 hledger hledger 0.14 2
 hscolour hscolour 1.17 5
+hsgtd hsgtd 0.2 1
+hxmppc hxmppc 0.2 1
 json-tools json-tools 0.3.1 9
 nptools nptools 0.4.1 6
 photoname photoname 3.0.0 2
